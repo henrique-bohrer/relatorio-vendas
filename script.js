@@ -1,7 +1,6 @@
 window.onload = function() {
     // Seletores (incluindo as novas colunas)
     const fileInput = document.getElementById('excelFile');
-    const reportContainer = document.getElementById('reportContainer');
     const leftColumn = document.getElementById('leftColumn');
     const rightColumn = document.getElementById('rightColumn');
     const vendedorFilter = document.getElementById('vendedorFilter');
@@ -100,13 +99,45 @@ window.onload = function() {
         return null;
     }
 
+    function calculateStars(validSalesCount) {
+        if (validSalesCount >= 10) return "⭐⭐⭐";
+        if (validSalesCount >= 8) return "⭐⭐";
+        if (validSalesCount >= 5) return "⭐";
+        return "";
+    }
+
+    // ==============================================================================
+    //     ** NOVA FUNÇÃO COM A LÓGICA DE VENDAS VÁLIDAS DO POWER BI **
+    // ==============================================================================
+    function isVendaValida(sale) {
+        if (!sale) return false;
+
+        // Condição 1: Valor >= 850
+        if (sale.Valor && sale.Valor >= 850) {
+            return true;
+        }
+
+        const produto = sale.Produto || '';
+        // Condição 2: Produto contém "Entrada" (ignorando maiúsculas/minúsculas)
+        if (produto.toLowerCase().includes('entrada')) {
+            return true;
+        }
+
+        // Condição 3: Produto contém "Highlights" (ignorando maiúsculas/minúsculas)
+        if (produto.toLowerCase().includes('highlights')) {
+            return true;
+        }
+
+        return false;
+    }
+
     function buildGeneralSummaryHtml(sales) {
         const totalVendas = sales.length;
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
-        const vendasParciais = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
+        const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
         const valorTotal = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
-        return `<div class="report-section"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Vendas Parciais</p><span class="value">${vendasParciais}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Total Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
+        return `<div class="report-section"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Total Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
     }
 
     function buildWeeklySummaryHtml(sales, dateColumnName) {
@@ -139,6 +170,9 @@ window.onload = function() {
         return weeklyHtml;
     }
 
+    // ==============================================================================
+    //       ** FUNÇÃO PRINCIPAL ATUALIZADA PARA USAR A NOVA LÓGICA **
+    // ==============================================================================
     function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName) {
         let allReportsHtml = '<div class="report-section" id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
         let hasSalespeopleReports = false;
@@ -146,22 +180,30 @@ window.onload = function() {
             const salesByPerson = sales.filter(s => s.ColaboradorID === collab.ColaboradorID);
             if (salesByPerson.length === 0) return;
             hasSalespeopleReports = true;
+
             const totalVendas = salesByPerson.length;
             const vendasInteiras = salesByPerson.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
-            const vendasParciais = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
+            const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
             const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
             const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
+
             const weeklyData = {};
             salesByPerson.forEach(sale => {
                 const dateObj = parseDate(sale[dateColumnName]);
                 if (!dateObj) return;
                 const weekStartDateStr = dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
                 if (!weeklyData[weekStartDateStr]) {
-                    weeklyData[weekStartDateStr] = { count: 0, value: 0, dateObj: dateObj };
+                    weeklyData[weekStartDateStr] = { count: 0, value: 0, validas: 0, dateObj: dateObj };
                 }
                 weeklyData[weekStartDateStr].count++;
                 weeklyData[weekStartDateStr].value += sale.Valor || 0;
+
+                // Usa a nova função para contar apenas vendas válidas
+                if (isVendaValida(sale)) {
+                    weeklyData[weekStartDateStr].validas++;
+                }
             });
+
             let weeklyDetailHtml = '<h4>Detalhamento Semanal:</h4>';
             if (Object.keys(weeklyData).length === 0) {
                 weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado semanal para este vendedor.</p>';
@@ -169,12 +211,25 @@ window.onload = function() {
                 weeklyDetailHtml += '<ul class="vendedor-semanal-list">';
                 Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                     const data = weeklyData[week];
-                    weeklyDetailHtml += `<li>Semana de ${week}: <strong>${data.count} vendas</strong> | <strong>${data.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></li>`;
+                    const stars = calculateStars(data.validas); // Calcula estrelas com base nas vendas válidas
+
+                    weeklyDetailHtml += `
+                        <li>
+                            <div class="weekly-item-header">
+                                <strong>Semana de ${week}</strong>
+                                <span class="stars">${stars}</span>
+                            </div>
+                            <div class="weekly-sub-details">
+                                <span>Vendas Válidas: <strong>${data.validas}</strong></span>
+                                <span>Vendas Totais: <strong>${data.count}</strong></span>
+                                <span>Valor: <strong>${data.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span>
+                            </div>
+                        </li>`;
                 });
                 weeklyDetailHtml += '</ul>';
             }
             const imageUrl = getRawImageUrl(collab.Foto);
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" crossorigin="anonymous"><h3>Vendedor(a): ${collab.Nome}</h3></div><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Vendas Parciais</p><span class="value">${vendasParciais}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div>${weeklyDetailHtml}</div>`;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" crossorigin="anonymous"><h3>Vendedor(a): ${collab.Nome}</h3></div><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div>${weeklyDetailHtml}</div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div class="report-section"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
@@ -203,35 +258,18 @@ window.onload = function() {
         }
     }
 
-    // ==============================================================================
-    //               FUNÇÃO DE DOWNLOAD DO PDF ATUALIZADA
-    // ==============================================================================
     function setupDownloadButton() {
         downloadPdfButton.classList.remove('hidden');
         const newButton = downloadPdfButton.cloneNode(true);
         downloadPdfButton.parentNode.replaceChild(newButton, downloadPdfButton);
-
         newButton.addEventListener('click', () => {
             const { jsPDF } = window.jspdf;
             const reportElement = document.getElementById('reportContainer');
-
             html2canvas(reportElement, { scale: 2, useCORS: true }).then(canvas => {
-                // Pega as dimensões da imagem gerada pelo html2canvas
                 const imgWidth = canvas.width;
                 const imgHeight = canvas.height;
-
-                // Cria um PDF com as mesmas proporções da imagem
-                // O jsPDF trabalha em 'pt' (pontos), onde 1pt = 1/72 de polegada. A conversão de px para pt não é direta,
-                // mas podemos criar um PDF com as mesmas proporções da imagem para que ela caiba perfeitamente.
-                const pdf = new jsPDF({
-                    orientation: 'p', // retrato
-                    unit: 'px', // vamos trabalhar em pixels para facilitar
-                    format: [imgWidth, imgHeight] // formato customizado com a largura e altura da nossa imagem
-                });
-
-                // Adiciona a imagem ao PDF, ocupando todo o espaço da página customizada
+                const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [imgWidth, imgHeight] });
                 pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, imgWidth, imgHeight);
-
                 pdf.save("relatorio-de-vendas.pdf");
             });
         });
