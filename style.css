@@ -19,7 +19,7 @@ body {
 
 /* Adicione este novo bloco de código */
 main {
-    max-width: 900px; /* Define a largura máxima do conteúdo. Ajuste se quiser mais largo ou mais estreito. */
+    max-width: 1400px;
     margin: 40px auto; /* Centraliza o bloco na tela (auto nas laterais) e adiciona um espaço no topo/fundo. */
     padding: 0 20px;   /* Adiciona um respiro interno para o conteúdo não colar nas bordas em telas menores. */
 }
@@ -102,6 +102,25 @@ select {
     border-radius: 12px;
     border: 1px solid var(--cor-borda);
     margin-top: 20px; /* <-- ADICIONE ESTA LINHA PARA CRIAR O ESPAÇO */
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: row; /* Alinha os itens em linha (lado a lado) */
+    align-items: flex-start; /* Alinha os itens no topo */
+    gap: 25px; /* Cria um espaço entre as colunas */
+
+}
+
+#leftColumn, #rightColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#rightColumn {
+    flex: 1; /* A coluna da direita ocupará o restante do espaço disponível */
+}
+
+#leftColumn {
+    flex: 0 0 40%; /* A coluna da esquerda ocupará 40% do espaço */
 }
 
 .placeholder {
@@ -215,6 +234,12 @@ h4 {
     margin-bottom: 8px;
     border-left: 3px solid transparent;
     transition: border-left-color 0.3s ease;
+    color: var(--cor-texto-secundaria); /* <-- ADICIONE ESTA LINHA */
+}
+
+/* Adicione esta nova regra logo abaixo da anterior */
+.vendedor-semanal-list li strong {
+    color: var(--cor-texto); /* Deixa os números com a cor de texto principal (mais claro) */
 }
 
 .vendedor-semanal-list li:hover {
@@ -275,4 +300,10 @@ h4 {
 #generateReportButton:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(254, 235, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+    .report-container {
+        flex-direction: column; /* Coloca as colunas uma sobre a outra */
+    }
 }
