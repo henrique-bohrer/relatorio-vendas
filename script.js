@@ -42,20 +42,29 @@ window.onload = function() {
         const salesData = XLSX.utils.sheet_to_json(workbook.Sheets[salesSheetSelect.value]);
         const collaboratorsData = XLSX.utils.sheet_to_json(workbook.Sheets[collaboratorsSheetSelect.value]);
 
-        const dateColumnName = findDateColumn(salesData);
+        const uniqueSalesData = [];
+        const seenVendaIDs = new Set();
+        for (const sale of salesData) {
+            if (sale.VendaID && !seenVendaIDs.has(sale.VendaID)) {
+                uniqueSalesData.push(sale);
+                seenVendaIDs.add(sale.VendaID);
+            }
+        }
+
+        const dateColumnName = findDateColumn(uniqueSalesData);
         if (!dateColumnName) {
             alert("Não foi possível encontrar uma coluna de data ('Inicio da Semanal' ou 'Início da Semana'). Verifique sua planilha.");
             return;
         }
 
-        const generalHtml = buildGeneralSummaryHtml(salesData);
-        const weeklyHtml = buildWeeklySummaryHtml(salesData, dateColumnName);
-        const salespeopleHtml = buildAllSalespeopleReportsHtml(salesData, collaboratorsData, dateColumnName);
+        const generalHtml = buildGeneralSummaryHtml(uniqueSalesData);
+        const weeklyHtml = buildWeeklySummaryHtml(uniqueSalesData, dateColumnName);
+        const salespeopleHtml = buildAllSalespeopleReportsHtml(uniqueSalesData, collaboratorsData, dateColumnName);
 
         leftColumn.innerHTML = generalHtml + weeklyHtml;
         rightColumn.innerHTML = salespeopleHtml;
 
-        setupVendedorFilter(salesData, collaboratorsData);
+        setupVendedorFilter(uniqueSalesData, collaboratorsData);
         setupDownloadButton();
 
         sheetSelectorContainer.classList.add('hidden');
@@ -106,38 +115,29 @@ window.onload = function() {
         return "";
     }
 
-    // ==============================================================================
-    //     ** NOVA FUNÇÃO COM A LÓGICA DE VENDAS VÁLIDAS DO POWER BI **
-    // ==============================================================================
     function isVendaValida(sale) {
         if (!sale) return false;
-
-        // Condição 1: Valor >= 850
-        if (sale.Valor && sale.Valor >= 850) {
-            return true;
-        }
-
+        if (sale.Valor && sale.Valor >= 850) { return true; }
         const produto = sale.Produto || '';
-        // Condição 2: Produto contém "Entrada" (ignorando maiúsculas/minúsculas)
-        if (produto.toLowerCase().includes('entrada')) {
-            return true;
-        }
-
-        // Condição 3: Produto contém "Highlights" (ignorando maiúsculas/minúsculas)
-        if (produto.toLowerCase().includes('highlights')) {
-            return true;
-        }
-
+        if (produto.toLowerCase().includes('entrada')) { return true; }
         return false;
     }
 
+    // ==============================================================================
+    //               ** CÁLCULO DE VALOR ATUALIZADO AQUI **
+    // ==============================================================================
     function buildGeneralSummaryHtml(sales) {
-        const totalVendas = sales.length;
+        const vendasValidas = sales.filter(isVendaValida);
+        const totalVendasValidas = vendasValidas.length;
+
+        // ** CORREÇÃO FINAL: Valor total agora soma TODAS as transações, incluindo retornos **
+        const valorTotalRecebido = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
+
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
         const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-        const valorTotal = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
-        return `<div class="report-section"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Total Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
+
+        return `<div class="report-section"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Vendas Válidas</p><span class="value">${totalVendasValidas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Total Recebido</p><span class="value">${valorTotalRecebido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
     }
 
     function buildWeeklySummaryHtml(sales, dateColumnName) {
@@ -159,8 +159,9 @@ window.onload = function() {
             weeklyHtml += '<div class="weekly-details">';
             Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                 const weekSales = weeklyData[week].sales;
-                const totalVendas = weekSales.length;
+                const totalVendas = weekSales.filter(s => s['Tipo de Venda'] !== 'Retorno').length;
                 const retornos = weekSales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
+                // ** CORREÇÃO FINAL: Valor total semanal agora soma TODAS as transações da semana **
                 const valorTotal = weekSales.reduce((sum, s) => sum + (s.Valor || 0), 0);
                 weeklyHtml += `<div class="weekly-item"><p><strong>Semana de ${week}</strong></p><p>Total de Vendas: <strong class="value">${totalVendas}</strong></p><p>Retornos: <strong class="value">${retornos}</strong></p><p>Valor Total: <strong class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p></div>`;
             });
@@ -170,9 +171,6 @@ window.onload = function() {
         return weeklyHtml;
     }
 
-    // ==============================================================================
-    //       ** FUNÇÃO PRINCIPAL ATUALIZADA PARA USAR A NOVA LÓGICA **
-    // ==============================================================================
     function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName) {
         let allReportsHtml = '<div class="report-section" id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
         let hasSalespeopleReports = false;
@@ -181,10 +179,11 @@ window.onload = function() {
             if (salesByPerson.length === 0) return;
             hasSalespeopleReports = true;
 
-            const totalVendas = salesByPerson.length;
             const vendasInteiras = salesByPerson.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
             const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
+            const totalVendas = vendasInteiras + entradasDeVenda;
             const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
+            // ** CORREÇÃO FINAL: Valor total do vendedor agora soma TODAS as transações dele **
             const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
 
             const weeklyData = {};
@@ -193,12 +192,17 @@ window.onload = function() {
                 if (!dateObj) return;
                 const weekStartDateStr = dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
                 if (!weeklyData[weekStartDateStr]) {
-                    weeklyData[weekStartDateStr] = { count: 0, value: 0, validas: 0, dateObj: dateObj };
+                    weeklyData[weekStartDateStr] = { count: 0, value: 0, validas: 0, inteiras: 0, entradas: 0, dateObj: dateObj };
                 }
-                weeklyData[weekStartDateStr].count++;
-                weeklyData[weekStartDateStr].value += sale.Valor || 0;
 
-                // Usa a nova função para contar apenas vendas válidas
+                weeklyData[weekStartDateStr].count++;
+
+                if (sale['Tipo de Venda'] === 'Venda Inteira') {
+                    weeklyData[weekStartDateStr].inteiras++;
+                } else if (sale['Tipo de Venda'] === 'Entrada de Venda') {
+                    weeklyData[weekStartDateStr].entradas++;
+                }
+
                 if (isVendaValida(sale)) {
                     weeklyData[weekStartDateStr].validas++;
                 }
@@ -211,7 +215,11 @@ window.onload = function() {
                 weeklyDetailHtml += '<ul class="vendedor-semanal-list">';
                 Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                     const data = weeklyData[week];
-                    const stars = calculateStars(data.validas); // Calcula estrelas com base nas vendas válidas
+                    const stars = calculateStars(data.validas);
+                    // ** CORREÇÃO FINAL: Valor semanal do vendedor agora soma TODAS as transações da semana **
+                    const weeklyValue = salesByPerson
+                        .filter(s => parseDate(s[dateColumnName])?.toLocaleDateString('pt-BR', {timeZone: 'UTC'}) === week)
+                        .reduce((sum, s) => sum + (s.Valor || 0), 0);
 
                     weeklyDetailHtml += `
                         <li>
@@ -221,8 +229,8 @@ window.onload = function() {
                             </div>
                             <div class="weekly-sub-details">
                                 <span>Vendas Válidas: <strong>${data.validas}</strong></span>
-                                <span>Vendas Totais: <strong>${data.count}</strong></span>
-                                <span>Valor: <strong>${data.value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span>
+                                <span>Vendas Totais: <strong>${data.inteiras + data.entradas}</strong></span>
+                                <span>Valor: <strong>${weeklyValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span>
                             </div>
                         </li>`;
                 });
