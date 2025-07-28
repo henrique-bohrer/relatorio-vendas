@@ -123,16 +123,10 @@ window.onload = function() {
         return false;
     }
 
-    // ==============================================================================
-    //               ** CÁLCULO DE VALOR ATUALIZADO AQUI **
-    // ==============================================================================
     function buildGeneralSummaryHtml(sales) {
         const vendasValidas = sales.filter(isVendaValida);
         const totalVendasValidas = vendasValidas.length;
-
-        // ** CORREÇÃO FINAL: Valor total agora soma TODAS as transações, incluindo retornos **
         const valorTotalRecebido = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
-
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
         const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
@@ -161,7 +155,6 @@ window.onload = function() {
                 const weekSales = weeklyData[week].sales;
                 const totalVendas = weekSales.filter(s => s['Tipo de Venda'] !== 'Retorno').length;
                 const retornos = weekSales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-                // ** CORREÇÃO FINAL: Valor total semanal agora soma TODAS as transações da semana **
                 const valorTotal = weekSales.reduce((sum, s) => sum + (s.Valor || 0), 0);
                 weeklyHtml += `<div class="weekly-item"><p><strong>Semana de ${week}</strong></p><p>Total de Vendas: <strong class="value">${totalVendas}</strong></p><p>Retornos: <strong class="value">${retornos}</strong></p><p>Valor Total: <strong class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p></div>`;
             });
@@ -183,7 +176,6 @@ window.onload = function() {
             const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
             const totalVendas = vendasInteiras + entradasDeVenda;
             const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-            // ** CORREÇÃO FINAL: Valor total do vendedor agora soma TODAS as transações dele **
             const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
 
             const weeklyData = {};
@@ -216,10 +208,7 @@ window.onload = function() {
                 Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                     const data = weeklyData[week];
                     const stars = calculateStars(data.validas);
-                    // ** CORREÇÃO FINAL: Valor semanal do vendedor agora soma TODAS as transações da semana **
-                    const weeklyValue = salesByPerson
-                        .filter(s => parseDate(s[dateColumnName])?.toLocaleDateString('pt-BR', {timeZone: 'UTC'}) === week)
-                        .reduce((sum, s) => sum + (s.Valor || 0), 0);
+                    const weeklyValue = salesByPerson.filter(s => parseDate(s[dateColumnName])?.toLocaleDateString('pt-BR', {timeZone: 'UTC'}) === week).reduce((sum, s) => sum + (s.Valor || 0), 0);
 
                     weeklyDetailHtml += `
                         <li>
@@ -266,20 +255,54 @@ window.onload = function() {
         }
     }
 
-    function setupDownloadButton() {
+    // ==============================================================================
+    //               ** FUNÇÃO DE DOWNLOAD DO PDF FINAL E CORRIGIDA **
+    // ==============================================================================
+    async function setupDownloadButton() {
         downloadPdfButton.classList.remove('hidden');
         const newButton = downloadPdfButton.cloneNode(true);
         downloadPdfButton.parentNode.replaceChild(newButton, downloadPdfButton);
-        newButton.addEventListener('click', () => {
+
+        newButton.addEventListener('click', async () => {
             const { jsPDF } = window.jspdf;
-            const reportElement = document.getElementById('reportContainer');
-            html2canvas(reportElement, { scale: 2, useCORS: true }).then(canvas => {
-                const imgWidth = canvas.width;
-                const imgHeight = canvas.height;
-                const pdf = new jsPDF({ orientation: 'p', unit: 'px', format: [imgWidth, imgHeight] });
-                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, imgWidth, imgHeight);
-                pdf.save("relatorio-de-vendas.pdf");
-            });
+            const pdf = new jsPDF('p', 'mm', 'a4'); // Cria um PDF padrão
+            pdf.deletePage(1); // Remove a primeira página em branco para começar a adicionar as nossas
+
+            const options = { scale: 2, useCORS: true, backgroundColor: '#1e1e1e' };
+            const pdfWidth = 210; // Largura de uma página A4 em mm
+
+            // --- 1. Adicionar a primeira página (Relatório Geral com fundo) ---
+            const leftColumnEl = document.getElementById('leftColumn');
+
+            const originalPadding = leftColumnEl.style.padding;
+            leftColumnEl.style.padding = '20px'; // Adiciona preenchimento temporário para a captura
+
+            const leftColumnCanvas = await html2canvas(leftColumnEl, options);
+            leftColumnEl.style.padding = originalPadding; // Remove o preenchimento após a captura
+
+            const leftImgData = leftColumnCanvas.toDataURL('image/png');
+            const leftImgHeightMm = (leftColumnCanvas.height * pdfWidth) / leftColumnCanvas.width;
+
+            // Adiciona uma nova página com a altura exata do conteúdo
+            pdf.addPage([pdfWidth, leftImgHeightMm], 'p');
+            pdf.addImage(leftImgData, 'PNG', 0, 0, pdfWidth, leftImgHeightMm);
+
+            // --- 2. Adicionar uma página para cada vendedor ---
+            const vendedorSections = document.querySelectorAll('.vendedor-section');
+            for (const section of vendedorSections) {
+                // Verifica se o vendedor está visível (respeitando o filtro)
+                if (section.style.display !== 'none') {
+                    const vendedorCanvas = await html2canvas(section, options);
+                    const vendedorImgData = vendedorCanvas.toDataURL('image/png');
+                    const vendedorImgHeightMm = (vendedorCanvas.height * pdfWidth) / vendedorCanvas.width;
+
+                    // Adiciona uma nova página com a altura exata para cada vendedor
+                    pdf.addPage([pdfWidth, vendedorImgHeightMm], 'p');
+                    pdf.addImage(vendedorImgData, 'PNG', 0, 0, pdfWidth, vendedorImgHeightMm);
+                }
+            }
+
+            pdf.save("relatorio-de-vendas.pdf");
         });
     }
 };
