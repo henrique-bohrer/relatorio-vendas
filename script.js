@@ -256,7 +256,7 @@ window.onload = function() {
     }
 
     // ==============================================================================
-    //               ** FUNÇÃO DE DOWNLOAD DO PDF FINAL E CORRIGIDA **
+    //               ** FUNÇÃO DE DOWNLOAD DO PDF FINAL E OTIMIZADA **
     // ==============================================================================
     async function setupDownloadButton() {
         downloadPdfButton.classList.remove('hidden');
@@ -265,43 +265,62 @@ window.onload = function() {
 
         newButton.addEventListener('click', async () => {
             const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('p', 'mm', 'a4'); // Cria um PDF padrão
-            pdf.deletePage(1); // Remove a primeira página em branco para começar a adicionar as nossas
+            const pdf = new jsPDF('l', 'mm', 'a4');
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            pdf.deletePage(1);
 
-            const options = { scale: 2, useCORS: true, backgroundColor: '#1e1e1e' };
-            const pdfWidth = 210; // Largura de uma página A4 em mm
+            const options = { scale: 2, useCORS: true };
+            const margin = 15; // Margem de 15mm na página
+            const reportContainer = document.getElementById('reportContainer');
 
-            // --- 1. Adicionar a primeira página (Relatório Geral com fundo) ---
+            reportContainer.classList.add('pdf-export-mode');
+
+            // --- 1. Adicionar a primeira página ---
             const leftColumnEl = document.getElementById('leftColumn');
+            const generalReportEl = leftColumnEl.querySelector('.report-section:nth-child(1)');
+            const weeklyReportEl = leftColumnEl.querySelector('.report-section:nth-child(2)');
 
-            const originalPadding = leftColumnEl.style.padding;
-            leftColumnEl.style.padding = '20px'; // Adiciona preenchimento temporário para a captura
+            if (generalReportEl && weeklyReportEl) {
+                const generalCanvas = await html2canvas(generalReportEl, { ...options, backgroundColor: '#2a2a2a' });
+                const weeklyCanvas = await html2canvas(weeklyReportEl, { ...options, backgroundColor: '#2a2a2a' });
 
-            const leftColumnCanvas = await html2canvas(leftColumnEl, options);
-            leftColumnEl.style.padding = originalPadding; // Remove o preenchimento após a captura
+                const contentWidth = (pdfWidth - margin * 3) / 2;
+                const generalImgHeight = (generalCanvas.height * contentWidth) / generalCanvas.width;
+                const weeklyImgHeight = (weeklyCanvas.height * contentWidth) / weeklyCanvas.width;
+                const pageHeight = Math.max(generalImgHeight, weeklyImgHeight) + (margin * 2);
 
-            const leftImgData = leftColumnCanvas.toDataURL('image/png');
-            const leftImgHeightMm = (leftColumnCanvas.height * pdfWidth) / leftColumnCanvas.width;
+                pdf.addPage([pdfWidth, pageHeight], 'l');
+                pdf.setFillColor('#1e1e1e');
+                pdf.rect(0, 0, pdfWidth, pageHeight, 'F');
 
-            // Adiciona uma nova página com a altura exata do conteúdo
-            pdf.addPage([pdfWidth, leftImgHeightMm], 'p');
-            pdf.addImage(leftImgData, 'PNG', 0, 0, pdfWidth, leftImgHeightMm);
+                pdf.addImage(generalCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, generalImgHeight);
+                pdf.addImage(weeklyCanvas.toDataURL('image/png'), 'PNG', margin * 2 + contentWidth, margin, contentWidth, weeklyImgHeight);
+            }
 
             // --- 2. Adicionar uma página para cada vendedor ---
             const vendedorSections = document.querySelectorAll('.vendedor-section');
             for (const section of vendedorSections) {
-                // Verifica se o vendedor está visível (respeitando o filtro)
                 if (section.style.display !== 'none') {
-                    const vendedorCanvas = await html2canvas(section, options);
-                    const vendedorImgData = vendedorCanvas.toDataURL('image/png');
-                    const vendedorImgHeightMm = (vendedorCanvas.height * pdfWidth) / vendedorCanvas.width;
+                    // Adiciona classe temporária para alargar o conteúdo
+                    section.classList.add('pdf-capture-wide');
+                    const vendedorCanvas = await html2canvas(section, { ...options, backgroundColor: '#1e1e1e' });
+                    section.classList.remove('pdf-capture-wide'); // Remove a classe após a captura
 
-                    // Adiciona uma nova página com a altura exata para cada vendedor
-                    pdf.addPage([pdfWidth, vendedorImgHeightMm], 'p');
-                    pdf.addImage(vendedorImgData, 'PNG', 0, 0, pdfWidth, vendedorImgHeightMm);
+                    const imageWidthOnPdf = pdfWidth - (margin * 2);
+                    const vendedorImgHeightMm = (vendedorCanvas.height * imageWidthOnPdf) / vendedorCanvas.width;
+                    const pageHeight = vendedorImgHeightMm + (margin * 2);
+                    const xPosition = margin;
+                    const yPosition = margin;
+
+                    pdf.addPage([pdfWidth, pageHeight], 'l');
+                    pdf.setFillColor('#121212'); // Fundo principal mais escuro
+                    pdf.rect(0, 0, pdfWidth, pageHeight, 'F');
+
+                    pdf.addImage(vendedorCanvas.toDataURL('image/png'), 'PNG', xPosition, yPosition, imageWidthOnPdf, vendedorImgHeightMm);
                 }
             }
 
+            reportContainer.classList.remove('pdf-export-mode');
             pdf.save("relatorio-de-vendas.pdf");
         });
     }

@@ -331,6 +331,22 @@ h4 {
     box-shadow: 0 0 15px rgba(254, 235, 0, 0.3);
 }
 
+/* Adicione este novo bloco de código no final do seu style.css */
+
+/* Classe temporária para remover bordas durante a exportação para PDF */
+.pdf-export-mode .report-section,
+.pdf-export-mode .vendedor-section,
+.pdf-export-mode .summary-item,
+.pdf-export-mode .weekly-item {
+    border: none !important;
+}
+
+.pdf-capture-wide {
+    width: 900px !important; /* Define uma largura fixa e ampla para a captura */
+    padding: 20px !important;
+    border-radius: 12px !important;
+}
+
 @media (max-width: 1024px) {
     .report-container {
         flex-direction: column; /* Coloca as colunas uma sobre a outra */
