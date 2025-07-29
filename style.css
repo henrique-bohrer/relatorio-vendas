@@ -1,4 +1,3 @@
-/* Importando a cor de destaque como uma variável CSS para fácil reutilização */
 :root {
     --cor-destaque: #FEEB00;
     --cor-fundo: #121212;
@@ -8,40 +7,31 @@
     --cor-texto-secundaria: #a0a0a0;
     --cor-borda: #333333;
 }
-
-/* Estilos Gerais com a nova fonte e cores */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     margin: 0;
 }
-
-/* Adicione este novo bloco de código */
 main {
     max-width: 1400px;
-    margin: 40px auto; /* Centraliza o bloco na tela (auto nas laterais) e adiciona um espaço no topo/fundo. */
-    padding: 0 20px;   /* Adiciona um respiro interno para o conteúdo não colar nas bordas em telas menores. */
+    margin: 40px auto;
+    padding: 0 20px;
 }
-
 header {
     text-align: center;
     margin-bottom: 30px;
     padding-bottom: 20px;
 }
-
 header h1 {
     color: var(--cor-destaque);
     font-weight: 700;
     font-size: 2.5em;
 }
-
 header p {
     color: var(--cor-texto-secundaria);
     font-size: 1.1em;
 }
-
-/* Controles (Botões e Filtro) com o novo tema */
 .controls {
     display: flex;
     justify-content: center;
@@ -53,28 +43,24 @@ header p {
     border-radius: 12px;
     border: 1px solid var(--cor-borda);
 }
-
 input[type="file"] {
     display: none;
 }
-
 .custom-file-upload, button {
     padding: 12px 25px;
     cursor: pointer;
     background-color: var(--cor-destaque);
-    color: #000000; /* Preto para ter contraste com o amarelo */
+    color: #000000;
     border-radius: 8px;
     border: none;
     font-size: 16px;
     font-weight: 600;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .custom-file-upload:hover, button:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(254, 235, 0, 0.3);
 }
-
 select {
     padding: 12px;
     border-radius: 8px;
@@ -90,144 +76,83 @@ select {
     background-size: 1em;
     padding-right: 3rem;
 }
-
 .hidden {
     display: none;
 }
-
-/* Container do Relatório com o novo tema */
 .report-container {
-    background-color: var(--cor-fundo-secundaria);
-    padding: 30px;
-    border-radius: 12px;
-    border: 1px solid var(--cor-borda);
-    margin-top: 20px; /* <-- ADICIONE ESTA LINHA PARA CRIAR O ESPAÇO */
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: row; /* Alinha os itens em linha (lado a lado) */
-    align-items: flex-start; /* Alinha os itens no topo */
-    gap: 25px; /* Cria um espaço entre as colunas */
-
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 25px;
 }
-
 #leftColumn, #rightColumn {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-
-#rightColumn {
-    flex: 1; /* A coluna da direita ocupará o restante do espaço disponível */
-}
-
 #leftColumn {
-    flex: 0 0 40%; /* A coluna da esquerda ocupará 40% do espaço */
+    flex: 0 0 40%;
 }
-
+#rightColumn {
+    flex: 1;
+}
 .placeholder {
     text-align: center;
     color: var(--cor-texto-secundaria);
     padding: 60px 0;
+    background-color: var(--cor-fundo-secundaria);
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
 }
-
-/* Títulos das Seções com a cor de destaque */
 h2 {
     color: var(--cor-destaque);
     border-bottom: 2px solid var(--cor-destaque);
     padding-bottom: 10px;
-    margin-top: 20px;
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
     font-weight: 600;
+    font-size: 1.5em;
 }
-
 .report-section {
-    margin-bottom: 40px;
+    background-color: var(--cor-fundo-secundaria);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--cor-borda);
 }
-
-/* Cards de Resumo (KPIs) - Estrutura melhorada */
-.summary-grid, .weekly-details {
+.summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
-    margin-top: 20px;
 }
-
+.weekly-details {
+     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
 .summary-item, .weekly-item {
     background-color: var(--cor-fundo-terciaria);
     padding: 20px;
     border-radius: 10px;
     border: 1px solid var(--cor-borda);
     text-align: left;
-    transition: transform 0.3s ease, border-color 0.3s ease;
 }
-
-.summary-item:hover, .weekly-item:hover {
-    transform: translateY(-5px);
-    border-color: var(--cor-destaque);
-}
-
 .summary-item p, .weekly-item p {
     margin: 0 0 8px 0;
     font-size: 14px;
     color: var(--cor-texto-secundaria);
     font-weight: 300;
 }
-
 .summary-item .value, .weekly-item .value {
     font-size: 24px;
     font-weight: 700;
-    color: var(--cor-texto);
-    margin-top: 5px;
+    color: var(--cor-destaque);
 }
-.summary-item p strong, .weekly-item p strong{
-    color: var(--cor-texto)
-}
-
-.weekly-item-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--cor-fundo-terciaria);
-    padding: 10px 15px;
-    border-radius: 6px 6px 0 0; /* Arredonda só os cantos de cima */
-}
-
-.weekly-item-header .stars {
-    font-size: 16px;
-    filter: drop-shadow(0 0 2px #FEEB00); /* Adiciona um brilho sutil nas estrelas */
-}
-
-.weekly-sub-details {
-    display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    background-color: rgba(0,0,0,0.2);
-    padding: 10px 15px;
-    border-radius: 0 0 6px 6px; /* Arredonda só os cantos de baixo */
-    font-size: 13px;
-    color: var(--cor-texto-secundaria);
-    border-top: 1px solid var(--cor-borda);
-}
-
-.weekly-sub-details strong {
-    color: var(--cor-texto);
-}
-
-/* Relatório Individual do Vendedor com o novo tema */
-.vendedor-section {
-    margin-top: 40px;
-    padding: 25px;
-    border-radius: 10px;
-    background-color: var(--cor-fundo); /* Fundo um pouco mais escuro para diferenciar */
-    border: 1px solid var(--cor-borda);
-}
-
 .vendedor-header {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-bottom: 20px;
+    grid-column: 1 / -1;
 }
-
 .vendedor-header img {
     width: 70px;
     height: 70px;
@@ -235,46 +160,55 @@ h2 {
     object-fit: cover;
     border: 3px solid var(--cor-destaque);
 }
-
 .vendedor-header h3 {
     margin: 0;
     font-size: 26px;
     color: var(--cor-destaque);
     font-weight: 600;
 }
-
 h4 {
     font-weight: 600;
     color: var(--cor-texto);
-    margin-top: 25px;
-    margin-bottom: 15px;
-    border-left: 4px solid var(--cor-destaque);
+    margin: 0 0 15px 0;
     padding-left: 10px;
+    border-left: 4px solid var(--cor-destaque);
 }
-
 .vendedor-semanal-list {
     list-style: none;
-    padding-left: 0;
+    padding: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-right: 10px;
 }
-
 .vendedor-semanal-list li {
+    padding: 0;
+    margin-bottom: 10px;
     background-color: var(--cor-fundo-terciaria);
-    border-radius: 6px;
-    margin-bottom: 8px;
-    border-left: 3px solid transparent;
-    transition: border-left-color 0.3s ease;
-    color: var(--cor-texto-secundaria); /* <-- ADICIONE ESTA LINHA */
+    border-radius: 8px;
+    overflow: hidden;
 }
-
-/* Adicione esta nova regra logo abaixo da anterior */
-.vendedor-semanal-list li strong {
-    color: var(--cor-texto); /* Deixa os números com a cor de texto principal (mais claro) */
+.weekly-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
 }
-
-.vendedor-semanal-list li:hover {
-    border-left-color: var(--cor-destaque);
+.weekly-item-header .stars {
+    font-size: 16px;
 }
-
+.weekly-sub-details {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: rgba(0,0,0,0.2);
+    padding: 10px 15px;
+    font-size: 13px;
+    color: var(--cor-texto-secundaria);
+    border-top: 1px solid var(--cor-borda);
+}
+.weekly-sub-details strong {
+    color: var(--cor-destaque);
+}
 .sheet-selector-container {
     background-color: var(--cor-fundo-secundaria);
     padding: 25px 30px;
@@ -283,72 +217,82 @@ h4 {
     margin-top: 20px;
     text-align: center;
 }
+.sheet-selector-container h2 { margin-top: 0; border: none; }
+.sheet-selector-container p { color: var(--cor-texto-secundaria); margin-bottom: 25px; }
+.sheet-selector-container .selectors { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; }
+.sheet-selector-container .selector-item { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.sheet-selector-container label { font-weight: 600; color: var(--cor-texto-secundaria); }
+#generateReportButton { padding: 12px 30px; font-size: 16px; font-weight: 600; background-color: var(--cor-destaque); color: #000; border: none; border-radius: 8px; cursor: pointer; }
 
-.sheet-selector-container h2 {
-    margin-top: 0;
-    border: none; /* Remove a borda do h2 aqui para um estilo diferente */
+.vendedor-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+    height: 100%;
 }
 
-.sheet-selector-container p {
-    color: var(--cor-texto-secundaria);
-    margin-bottom: 25px;
+/* --- ESTILOS PARA O PDF --- */
+/* Molde invisível para a captura do PDF */
+.pdf-capture-area {
+    position: absolute;
+    top: -9999px;
+    left: 0;
+    width: 1800px; /* Largura para captura em alta qualidade */
+    padding: 40px;
+    background-color: var(--cor-fundo);
+    box-sizing: border-box;
+    color: var(--cor-texto); /* Garante que os textos fiquem claros */
 }
-
-.sheet-selector-container .selectors {
+/* Estilo do cabeçalho dentro do molde do PDF */
+.pdf-header {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 25px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
-
-.sheet-selector-container .selector-item {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+.pdf-header img.logo {
+    width: 120px;
+    height: auto;
 }
-
-.sheet-selector-container label {
-    font-weight: 600;
-    color: var(--cor-texto-secundaria);
+.pdf-header h1 {
+    color: var(--cor-destaque);
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
 }
-
-/* O botão de gerar relatório dentro do seletor */
-#generateReportButton {
-    padding: 12px 30px;
-    font-size: 16px;
-    font-weight: 600;
-    background-color: var(--cor-destaque);
-    color: #000;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+.pdf-header img.vendedor-foto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--cor-destaque);
 }
-
-#generateReportButton:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(254, 235, 0, 0.3);
+/* Grid para o conteúdo do PDF */
+.pdf-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
 }
-
-/* Adicione este novo bloco de código no final do seu style.css */
-
-/* Classe temporária para remover bordas durante a exportação para PDF */
-.pdf-export-mode .report-section,
-.pdf-export-mode .vendedor-section,
-.pdf-export-mode .summary-item,
-.pdf-export-mode .weekly-item {
+/* Ajusta os elementos clonados para o PDF */
+.pdf-capture-area .report-section,
+.pdf-capture-area .vendedor-section {
+    background-color: transparent !important;
     border: none !important;
+    box-shadow: none !important;
+    padding: 0;
+    margin: 0;
 }
-
-.pdf-capture-wide {
-    width: 900px !important; /* Define uma largura fixa e ampla para a captura */
-    padding: 20px !important;
-    border-radius: 12px !important;
+.pdf-capture-area h2, .pdf-capture-area h3, .pdf-capture-area h4 {
+    text-align: left;
+    border: none;
 }
 
 @media (max-width: 1024px) {
-    .report-container {
-        flex-direction: column; /* Coloca as colunas uma sobre a outra */
+    .report-container, .vendedor-body {
+        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 }

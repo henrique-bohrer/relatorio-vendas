@@ -1,5 +1,7 @@
 window.onload = function() {
-    // Seletores (incluindo as novas colunas)
+    // Logo da empresa em formato Base64 para ser embutida no PDF
+    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
+    // Seletores dos elementos da página
     const fileInput = document.getElementById('excelFile');
     const leftColumn = document.getElementById('leftColumn');
     const rightColumn = document.getElementById('rightColumn');
@@ -61,8 +63,8 @@ window.onload = function() {
         const weeklyHtml = buildWeeklySummaryHtml(uniqueSalesData, dateColumnName);
         const salespeopleHtml = buildAllSalespeopleReportsHtml(uniqueSalesData, collaboratorsData, dateColumnName);
 
-        leftColumn.innerHTML = generalHtml + weeklyHtml;
-        rightColumn.innerHTML = salespeopleHtml;
+        leftColumn.innerHTML = generalHtml;
+        rightColumn.innerHTML = weeklyHtml + salespeopleHtml;
 
         setupVendedorFilter(uniqueSalesData, collaboratorsData);
         setupDownloadButton();
@@ -86,11 +88,6 @@ window.onload = function() {
             if (headers.includes(name)) return name;
         }
         return null;
-    }
-
-    function getRawImageUrl(githubUrl) {
-        if (!githubUrl || typeof githubUrl !== 'string') return '';
-        return githubUrl.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
     }
 
     function parseDate(excelVal) {
@@ -131,7 +128,7 @@ window.onload = function() {
         const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
 
-        return `<div class="report-section"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Vendas Válidas</p><span class="value">${totalVendasValidas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Total Recebido</p><span class="value">${valorTotalRecebido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
+        return `<div class="report-section" id="general-summary"><h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2><div class="summary-grid"><div class="summary-item"><p>Vendas Válidas</p><span class="value">${totalVendasValidas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div><div class="summary-item" style="grid-column: 1 / -1;"><p>Valor Total Recebido</p><span class="value">${valorTotalRecebido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>`;
     }
 
     function buildWeeklySummaryHtml(sales, dateColumnName) {
@@ -139,14 +136,15 @@ window.onload = function() {
         sales.forEach(sale => {
             const dateObj = parseDate(sale[dateColumnName]);
             if (!dateObj) return;
-            const weekStartDateStr = dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-            if (!weeklyData[weekStartDateStr]) {
-                weeklyData[weekStartDateStr] = { sales: [], dateObj: dateObj };
+            const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
+            const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+            if (!weeklyData[weekLabel]) {
+                weeklyData[weekLabel] = { sales: [], dateObj: dateObj };
             }
-            weeklyData[weekStartDateStr].sales.push(sale);
+            weeklyData[weekLabel].sales.push(sale);
         });
 
-        let weeklyHtml = '<div class="report-section"><h2>2. DETALHAMENTO SEMANAL</h2>';
+        let weeklyHtml = '<div class="report-section" id="weekly-summary"><h2>2. DETALHAMENTO SEMANAL</h2>';
         if (Object.keys(weeklyData).length === 0) {
             weeklyHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado semanal encontrado.</p>';
         } else {
@@ -156,7 +154,7 @@ window.onload = function() {
                 const totalVendas = weekSales.filter(s => s['Tipo de Venda'] !== 'Retorno').length;
                 const retornos = weekSales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
                 const valorTotal = weekSales.reduce((sum, s) => sum + (s.Valor || 0), 0);
-                weeklyHtml += `<div class="weekly-item"><p><strong>Semana de ${week}</strong></p><p>Total de Vendas: <strong class="value">${totalVendas}</strong></p><p>Retornos: <strong class="value">${retornos}</strong></p><p>Valor Total: <strong class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p></div>`;
+                weeklyHtml += `<div class="weekly-item"><p><strong>Semana ${week}</strong></p><p>Total de Vendas: <strong class="value">${totalVendas}</strong></p><p>Retornos: <strong class="value">${retornos}</strong></p><p>Valor Total: <strong class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p></div>`;
             });
             weeklyHtml += '</div>';
         }
@@ -165,7 +163,7 @@ window.onload = function() {
     }
 
     function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName) {
-        let allReportsHtml = '<div class="report-section" id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
+        let allReportsHtml = '<div id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
         let hasSalespeopleReports = false;
         collaborators.forEach(collab => {
             const salesByPerson = sales.filter(s => s.ColaboradorID === collab.ColaboradorID);
@@ -182,54 +180,47 @@ window.onload = function() {
             salesByPerson.forEach(sale => {
                 const dateObj = parseDate(sale[dateColumnName]);
                 if (!dateObj) return;
-                const weekStartDateStr = dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-                if (!weeklyData[weekStartDateStr]) {
-                    weeklyData[weekStartDateStr] = { count: 0, value: 0, validas: 0, inteiras: 0, entradas: 0, dateObj: dateObj };
+                const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
+                const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+                if (!weeklyData[weekLabel]) {
+                    weeklyData[weekLabel] = { count: 0, validas: 0, inteiras: 0, entradas: 0, dateObj: dateObj };
                 }
 
-                weeklyData[weekStartDateStr].count++;
-
-                if (sale['Tipo de Venda'] === 'Venda Inteira') {
-                    weeklyData[weekStartDateStr].inteiras++;
-                } else if (sale['Tipo de Venda'] === 'Entrada de Venda') {
-                    weeklyData[weekStartDateStr].entradas++;
-                }
-
-                if (isVendaValida(sale)) {
-                    weeklyData[weekStartDateStr].validas++;
-                }
+                weeklyData[weekLabel].count++;
+                if (sale['Tipo de Venda'] === 'Venda Inteira') weeklyData[weekLabel].inteiras++;
+                else if (sale['Tipo de Venda'] === 'Entrada de Venda') weeklyData[weekLabel].entradas++;
+                if (isVendaValida(sale)) weeklyData[weekLabel].validas++;
             });
 
-            let weeklyDetailHtml = '<h4>Detalhamento Semanal:</h4>';
+            let weeklyDetailHtml = '<div class="vendedor-detalhe-semanal"><h4>Detalhamento Semanal:</h4>';
             if (Object.keys(weeklyData).length === 0) {
-                weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado semanal para este vendedor.</p>';
+                weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado.</p>';
             } else {
                 weeklyDetailHtml += '<ul class="vendedor-semanal-list">';
                 Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                     const data = weeklyData[week];
                     const stars = calculateStars(data.validas);
-                    const weeklyValue = salesByPerson.filter(s => parseDate(s[dateColumnName])?.toLocaleDateString('pt-BR', {timeZone: 'UTC'}) === week).reduce((sum, s) => sum + (s.Valor || 0), 0);
+                    const weeklyValue = salesByPerson.filter(s => {
+                        const saleDateObj = parseDate(s[dateColumnName]);
+                        if (!saleDateObj) return false;
+                        const saleEndDate = new Date(saleDateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
+                        const saleWeekLabel = `${saleDateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${saleEndDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+                        return saleWeekLabel === week;
+                    }).reduce((sum, s) => sum + (s.Valor || 0), 0);
 
-                    weeklyDetailHtml += `
-                        <li>
-                            <div class="weekly-item-header">
-                                <strong>Semana de ${week}</strong>
-                                <span class="stars">${stars}</span>
-                            </div>
-                            <div class="weekly-sub-details">
-                                <span>Vendas Válidas: <strong>${data.validas}</strong></span>
-                                <span>Vendas Totais: <strong>${data.inteiras + data.entradas}</strong></span>
-                                <span>Valor: <strong>${weeklyValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span>
-                            </div>
-                        </li>`;
+                    weeklyDetailHtml += `<li><div class="weekly-item-header"><strong>Semana de ${week}</strong><span class="stars">${stars}</span></div><div class="weekly-sub-details"><span>Vendas Válidas: <strong>${data.validas}</strong></span><span>Vendas Totais: <strong>${data.inteiras + data.entradas}</strong></span><span>Valor: <strong>${weeklyValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span></div></li>`;
                 });
                 weeklyDetailHtml += '</ul>';
             }
-            const imageUrl = getRawImageUrl(collab.Foto);
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" crossorigin="anonymous"><h3>Vendedor(a): ${collab.Nome}</h3></div><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div>${weeklyDetailHtml}</div>`;
+            weeklyDetailHtml += '</div>';
+
+            const nomeArquivo = collab.Nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            const imageUrl = `images/foto-${nomeArquivo}.png`;
+
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div><div class="summary-item" style="grid-column: 1 / -1;"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
-        return hasSalespeopleReports ? allReportsHtml : '<div class="report-section"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
+        return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
     }
 
     function setupVendedorFilter(sales, collaborators) {
@@ -249,79 +240,118 @@ window.onload = function() {
             vendedorFilter.addEventListener('change', (e) => {
                 const selectedId = e.target.value;
                 document.querySelectorAll('.vendedor-section').forEach(section => {
-                    section.style.display = (selectedId === 'todos' || section.dataset.vendedorId === String(selectedId)) ? 'block' : 'none';
+                    section.style.display = (selectedId === 'todos' || section.dataset.vendedorId === String(selectedId)) ? 'grid' : 'none';
                 });
             });
         }
     }
 
-    // ==============================================================================
-    //               ** FUNÇÃO DE DOWNLOAD DO PDF FINAL E OTIMIZADA **
-    // ==============================================================================
+    function imageToBase64(url) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                resolve(canvas.toDataURL('image/png'));
+            };
+            img.onerror = reject;
+            img.src = url;
+        });
+    }
+
     async function setupDownloadButton() {
         downloadPdfButton.classList.remove('hidden');
         const newButton = downloadPdfButton.cloneNode(true);
         downloadPdfButton.parentNode.replaceChild(newButton, downloadPdfButton);
 
         newButton.addEventListener('click', async () => {
+            newButton.textContent = 'Gerando PDF...';
+            newButton.disabled = true;
+
             const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF('l', 'mm', 'a4');
-            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdf = new jsPDF({
+                orientation: 'l',
+                unit: 'pt',
+                format: [1920, 1080]
+            });
             pdf.deletePage(1);
 
-            const options = { scale: 2, useCORS: true };
-            const margin = 15; // Margem de 15mm na página
-            const reportContainer = document.getElementById('reportContainer');
-
-            reportContainer.classList.add('pdf-export-mode');
+            const options = {
+                scale: 2.5, // Aumenta a resolução da captura
+                useCORS: true,
+                backgroundColor: null // Fundo transparente para o canvas
+            };
+            const logoBase64 = await imageToBase64('images/logo-TDF-sem-fundo.png');
 
             // --- 1. Adicionar a primeira página ---
-            const leftColumnEl = document.getElementById('leftColumn');
-            const generalReportEl = leftColumnEl.querySelector('.report-section:nth-child(1)');
-            const weeklyReportEl = leftColumnEl.querySelector('.report-section:nth-child(2)');
+            const firstPageCaptureArea = document.createElement('div');
+            firstPageCaptureArea.className = 'pdf-capture-area';
 
-            if (generalReportEl && weeklyReportEl) {
-                const generalCanvas = await html2canvas(generalReportEl, { ...options, backgroundColor: '#2a2a2a' });
-                const weeklyCanvas = await html2canvas(weeklyReportEl, { ...options, backgroundColor: '#2a2a2a' });
+            const headerHtml = `<div class="pdf-header">
+                <img class="logo" src="${logoBase64}" />
+                <h1>Relatório Geral do Departamento</h1>
+            </div>`;
 
-                const contentWidth = (pdfWidth - margin * 3) / 2;
-                const generalImgHeight = (generalCanvas.height * contentWidth) / generalCanvas.width;
-                const weeklyImgHeight = (weeklyCanvas.height * contentWidth) / weeklyCanvas.width;
-                const pageHeight = Math.max(generalImgHeight, weeklyImgHeight) + (margin * 2);
+            const generalReportEl = document.getElementById('general-summary').cloneNode(true);
+            const weeklyReportEl = document.getElementById('weekly-summary').cloneNode(true);
 
-                pdf.addPage([pdfWidth, pageHeight], 'l');
-                pdf.setFillColor('#1e1e1e');
-                pdf.rect(0, 0, pdfWidth, pageHeight, 'F');
+            firstPageCaptureArea.innerHTML = headerHtml + `<div class="pdf-content-grid"></div>`;
+            firstPageCaptureArea.querySelector('.pdf-content-grid').appendChild(generalReportEl);
+            firstPageCaptureArea.querySelector('.pdf-content-grid').appendChild(weeklyReportEl);
 
-                pdf.addImage(generalCanvas.toDataURL('image/png'), 'PNG', margin, margin, contentWidth, generalImgHeight);
-                pdf.addImage(weeklyCanvas.toDataURL('image/png'), 'PNG', margin * 2 + contentWidth, margin, contentWidth, weeklyImgHeight);
-            }
+            document.body.appendChild(firstPageCaptureArea);
+
+            const firstPageCanvas = await html2canvas(firstPageCaptureArea, options);
+            document.body.removeChild(firstPageCaptureArea);
+
+            pdf.addPage([1920, 1080], 'l');
+            pdf.addImage(firstPageCanvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, 1920, 1080);
 
             // --- 2. Adicionar uma página para cada vendedor ---
             const vendedorSections = document.querySelectorAll('.vendedor-section');
             for (const section of vendedorSections) {
                 if (section.style.display !== 'none') {
-                    // Adiciona classe temporária para alargar o conteúdo
-                    section.classList.add('pdf-capture-wide');
-                    const vendedorCanvas = await html2canvas(section, { ...options, backgroundColor: '#1e1e1e' });
-                    section.classList.remove('pdf-capture-wide'); // Remove a classe após a captura
+                    const captureArea = document.createElement('div');
+                    captureArea.className = 'pdf-capture-area';
+                    const vendedorNome = section.dataset.vendedorNome || 'Vendedor';
+                    const clonedSection = section.cloneNode(true);
 
-                    const imageWidthOnPdf = pdfWidth - (margin * 2);
-                    const vendedorImgHeightMm = (vendedorCanvas.height * imageWidthOnPdf) / vendedorCanvas.width;
-                    const pageHeight = vendedorImgHeightMm + (margin * 2);
-                    const xPosition = margin;
-                    const yPosition = margin;
+                    // ** MUDANÇA: Remove o header redundante do clone **
+                    const redundantHeader = clonedSection.querySelector('.vendedor-header');
+                    if (redundantHeader) redundantHeader.remove();
 
-                    pdf.addPage([pdfWidth, pageHeight], 'l');
-                    pdf.setFillColor('#121212'); // Fundo principal mais escuro
-                    pdf.rect(0, 0, pdfWidth, pageHeight, 'F');
+                    const h2Geral = clonedSection.querySelector('h2');
+                    if(h2Geral) h2Geral.remove();
 
-                    pdf.addImage(vendedorCanvas.toDataURL('image/png'), 'PNG', xPosition, yPosition, imageWidthOnPdf, vendedorImgHeightMm);
+                    const nomeArquivo = vendedorNome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    const imageUrl = `images/foto-${nomeArquivo}.png`;
+                    const fotoVendedorBase64 = await imageToBase64(imageUrl);
+
+                    const vendedorHeaderHtml = `<div class="pdf-header">
+                        <img class="logo" src="${logoBase64}" />
+                        <h1>Relatório Individual: ${vendedorNome}</h1>
+                        <img class="vendedor-foto" src="${fotoVendedorBase64}" />
+                    </div>`;
+
+                    captureArea.innerHTML = vendedorHeaderHtml;
+                    captureArea.appendChild(clonedSection);
+                    document.body.appendChild(captureArea);
+
+                    const vendedorCanvas = await html2canvas(captureArea, options);
+                    document.body.removeChild(captureArea);
+
+                    pdf.addPage([1920, 1080], 'l');
+                    pdf.addImage(vendedorCanvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, 1920, 1080);
                 }
             }
 
-            reportContainer.classList.remove('pdf-export-mode');
             pdf.save("relatorio-de-vendas.pdf");
+
+            newButton.textContent = 'Baixar Relatório em PDF';
+            newButton.disabled = false;
         });
     }
 };
