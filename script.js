@@ -309,7 +309,7 @@ window.onload = function() {
 
             const headerHtml = `<div class="pdf-header">
                 <img class="logo" src="${logoBase64}" />
-                <h1>Relatório Geral do Departamento</h1>
+                <h1>RELATÓRIO GERAL DO DEPARTAMENTO</h1>
             </div>`;
 
             const generalReportEl = document.getElementById('general-summary').cloneNode(true);
