@@ -275,8 +275,9 @@ window.onload = function() {
             weeklyDetailHtml += '</div>';
 
             const nomeArquivo = collab.Nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const imageUrl = collab.Foto || `images/foto-${nomeArquivo}.png`;
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            const fallbackImage = `./images/foto-${nomeArquivo}.png`;
+            const imageUrl = collab.Foto ? `./images/${collab.Foto}` : fallbackImage;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
@@ -351,6 +352,7 @@ window.onload = function() {
     async function setupDownloadButton(collaboratorsData) {
         const newButton = downloadPdfButton.cloneNode(true);
         downloadPdfButton.parentNode.replaceChild(newButton, downloadPdfButton);
+        newButton.classList.remove('hidden');
 
         newButton.addEventListener('click', async () => {
             newButton.textContent = 'Gerando PDF...';
@@ -361,12 +363,13 @@ window.onload = function() {
             pdf.deletePage(1);
 
             const options = { scale: 2.5, useCORS: true, backgroundColor: null };
+            const fallbackImageBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
             let logoBase64;
             try {
-                logoBase64 = await imageToBase64('images/logo-TDF-sem-fundo.png');
+                logoBase64 = await imageToBase64('./images/logo-TDF-sem-fundo.png');
             } catch (error) {
                 console.error("Erro ao carregar o logo:", error);
-                logoBase64 = ''; // fallback
+                logoBase64 = fallbackImageBase64;
             }
 
             // --- 1. Adicionar a primeira página ---
@@ -388,33 +391,38 @@ window.onload = function() {
             const vendedorSections = document.querySelectorAll('.vendedor-section');
             for (const section of vendedorSections) {
                 if (section.style.display !== 'none') {
-                    const captureArea = document.createElement('div');
-                    captureArea.className = 'pdf-capture-area';
-                    const vendedorNome = section.dataset.vendedorNome || 'Vendedor';
-                    const clonedSection = section.cloneNode(true);
-
-                    const collaborator = collaboratorsData.find(c => c.Nome === vendedorNome);
-                    const nomeArquivo = vendedorNome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                    const imageUrl = (collaborator && collaborator.Foto) ? collaborator.Foto : `images/foto-${nomeArquivo}.png`;
-
-                    let fotoVendedorBase64;
                     try {
-                        fotoVendedorBase64 = await imageToBase64(imageUrl);
-                    } catch (error) {
-                        console.error(`Erro ao carregar a foto de ${vendedorNome}:`, error);
-                        fotoVendedorBase64 = ''; // fallback
-                    }
+                        const captureArea = document.createElement('div');
+                        captureArea.className = 'pdf-capture-area';
+                        const vendedorNome = section.dataset.vendedorNome || 'Vendedor';
+                        const clonedSection = section.cloneNode(true);
 
-                    const vendedorHeaderHtml = `<div class="pdf-header"><img class="logo" src="${logoBase64}" /><div class="pdf-title-block"><h1>RELATÓRIO INDIVIDUAL</h1><h2>${vendedorNome}</h2></div><img class="vendedor-foto" src="${fotoVendedorBase64}" /></div>`;
-                    captureArea.innerHTML = vendedorHeaderHtml;
-                    const redundantHeader = clonedSection.querySelector('.vendedor-header');
-                    if (redundantHeader) redundantHeader.remove();
-                    captureArea.appendChild(clonedSection);
-                    document.body.appendChild(captureArea);
-                    const vendedorCanvas = await html2canvas(captureArea, options);
-                    document.body.removeChild(captureArea);
-                    pdf.addPage([1920, 1080], 'l');
-                    pdf.addImage(vendedorCanvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, 1920, 1080);
+                        const collaborator = collaboratorsData.find(c => c.Nome === vendedorNome);
+                        const nomeArquivo = vendedorNome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                        const fallbackImage = `./images/foto-${nomeArquivo}.png`;
+                        const imageUrl = (collaborator && collaborator.Foto) ? `./images/${collaborator.Foto}` : fallbackImage;
+
+                        let fotoVendedorBase64;
+                        try {
+                            fotoVendedorBase64 = await imageToBase64(imageUrl);
+                        } catch (error) {
+                            console.error(`Erro ao carregar a foto de ${vendedorNome}:`, error);
+                            fotoVendedorBase64 = fallbackImageBase64;
+                        }
+
+                        const vendedorHeaderHtml = `<div class="pdf-header"><img class="logo" src="${logoBase64}" /><div class="pdf-title-block"><h1>RELATÓRIO INDIVIDUAL</h1><h2>${vendedorNome}</h2></div><img class="vendedor-foto" src="${fotoVendedorBase64}" /></div>`;
+                        captureArea.innerHTML = vendedorHeaderHtml;
+                        const redundantHeader = clonedSection.querySelector('.vendedor-header');
+                        if (redundantHeader) redundantHeader.remove();
+                        captureArea.appendChild(clonedSection);
+                        document.body.appendChild(captureArea);
+                        const vendedorCanvas = await html2canvas(captureArea, options);
+                        document.body.removeChild(captureArea);
+                        pdf.addPage([1920, 1080], 'l');
+                        pdf.addImage(vendedorCanvas.toDataURL('image/png', 1.0), 'PNG', 0, 0, 1920, 1080);
+                    } catch (error) {
+                        console.error("Falha ao gerar a página do PDF para o vendedor:", section.dataset.vendedorNome, error);
+                    }
                 }
             }
 
