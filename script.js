@@ -175,11 +175,13 @@ window.onload = function() {
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
         const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
+        const leads = sales.filter(s => s['Tipo de Venda'] === 'Lead').length;
         const valorTotalRealizado = vendasValidas.reduce((sum, s) => sum + (s.Valor || 0), 0);
 
         return `<div class="report-section" id="general-summary">
                     <h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2>
                     <div class="summary-grid">
+                        <div class="summary-item"><p>Leads Gerados</p><span class="value">${leads}</span></div>
                         <div class="summary-item"><p>Vendas Válidas</p><span class="value">${totalVendasValidas}</span></div>
                         <div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div>
                         <div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div>
@@ -235,6 +237,7 @@ window.onload = function() {
             const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
             const totalVendas = vendasInteiras + entradasDeVenda;
             const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
+            const leads = salesByPerson.filter(s => s['Tipo de Venda'] === 'Lead').length;
             const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
             const valorRealizado = salesByPerson.filter(isVendaValida).reduce((sum, s) => sum + (s.Valor || 0), 0);
 
@@ -276,8 +279,24 @@ window.onload = function() {
 
             const nomeArquivo = collab.Nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const fallbackImage = `./images/foto-${nomeArquivo}.png`;
-            const imageUrl = collab.Foto ? `./images/${collab.Foto}` : fallbackImage;
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            let imageUrl;
+            if (collab.Foto) {
+                let url = collab.Foto;
+                // Check if it's a GitHub blob URL and transform it
+                if (url.includes('github.com') && url.includes('/blob/')) {
+                    url = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/').replace('?raw=true', '');
+                }
+
+                if (url.startsWith('http://') || url.startsWith('https://')) {
+                    imageUrl = url;
+                } else {
+                    // It's a relative path
+                    imageUrl = `./images/${collab.Foto}`;
+                }
+            } else {
+                imageUrl = fallbackImage;
+            }
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads Gerados</p><span class="value">${leads}</span></div><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
@@ -400,7 +419,23 @@ window.onload = function() {
                         const collaborator = collaboratorsData.find(c => c.Nome === vendedorNome);
                         const nomeArquivo = vendedorNome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                         const fallbackImage = `./images/foto-${nomeArquivo}.png`;
-                        const imageUrl = (collaborator && collaborator.Foto) ? `./images/${collaborator.Foto}` : fallbackImage;
+                        let imageUrl;
+                        if (collaborator && collaborator.Foto) {
+                            let url = collaborator.Foto;
+                            // Check if it's a GitHub blob URL and transform it
+                            if (url.includes('github.com') && url.includes('/blob/')) {
+                                url = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/').replace('?raw=true', '');
+                            }
+
+                            if (url.startsWith('http://') || url.startsWith('https://')) {
+                                imageUrl = url;
+                            } else {
+                                // It's a relative path
+                                imageUrl = `./images/${collaborator.Foto}`;
+                            }
+                        } else {
+                            imageUrl = fallbackImage;
+                        }
 
                         let fotoVendedorBase64;
                         try {

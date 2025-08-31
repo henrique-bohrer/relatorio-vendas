@@ -120,7 +120,7 @@ h2 {
 }
 .summary-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Força 4 colunas de larguras iguais */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Mais flexível */
     gap: 20px;
 }
 .weekly-details {
