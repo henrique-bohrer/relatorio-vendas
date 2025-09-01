@@ -166,6 +166,13 @@ window.onload = function() {
         return null;
     }
 
+    function parseCurrency(value) {
+        if (typeof value === 'number') return value;
+        if (typeof value !== 'string') return 0;
+        const numberString = value.replace('R$', '').trim().replace(/\./g, '').replace(',', '.');
+        return parseFloat(numberString) || 0;
+    }
+
     function calculateStars(salesCount) {
         if (salesCount >= 10) return "⭐⭐⭐";
         if (salesCount >= 8) return "⭐⭐";
@@ -193,6 +200,17 @@ window.onload = function() {
         }).length;
         const vendaTotal = vendasInteiras + vendaParcial;
 
+        const valorVendasInteiras = sales
+            .filter(s => s['Tipo de Venda'] === 'Venda Inteira')
+            .reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
+        const valorVendaParcial = sales
+            .filter(s => {
+                const tipo = s['Tipo de Venda'] || '';
+                return tipo.includes('Boleto') || tipo.includes('Outro');
+            })
+            .reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
+        const valorTotalVendas = valorVendasInteiras + valorVendaParcial;
+
         return `<div class="report-section" id="general-summary">
                     <h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2>
                     <div class="summary-grid">
@@ -202,6 +220,11 @@ window.onload = function() {
                         <div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div>
                         <div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div>
                         <div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div>
+                    </div>
+                    <div class="summary-grid-totals">
+                        <div class="summary-item"><p>Valor Vendas Inteiras</p><span class="value">${valorVendasInteiras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                        <div class="summary-item"><p>Valor Venda Parcial</p><span class="value">${valorVendaParcial.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                        <div class="summary-item"><p>Valor Total em Vendas</p><span class="value">${valorTotalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
                     </div>
                 </div>`;
     }
@@ -287,6 +310,7 @@ window.onload = function() {
             if (salesByPerson.length === 0 && leadsByPerson.length === 0) return;
             hasSalespeopleReports = true;
 
+            // Monthly counts
             const totalLeads = leadsByPerson.reduce((sum, row) => sum + (row.Leads || 0), 0);
             const totalEntreMarc = leadsByPerson.reduce((sum, row) => sum + (row.EntreMarc || 0), 0);
             const totalEntreRea = leadsByPerson.reduce((sum, row) => sum + (row.EntreRea || 0), 0);
@@ -297,6 +321,19 @@ window.onload = function() {
             }).length;
             const vendaTotal = vendasInteiras + vendaParcial;
 
+            // Monthly monetary values
+            const valorVendasInteiras = salesByPerson
+                .filter(s => s['Tipo de Venda'] === 'Venda Inteira')
+                .reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
+            const valorVendaParcial = salesByPerson
+                .filter(s => {
+                    const tipo = s['Tipo de Venda'] || '';
+                    return tipo.includes('Boleto') || tipo.includes('Outro');
+                })
+                .reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
+            const valorTotalVendas = valorVendasInteiras + valorVendaParcial;
+
+            // Weekly breakdown logic
             const weeklyData = {};
             leadsByPerson.forEach(leadRow => {
                 const dateObj = parseDate(leadRow['Semana']);
@@ -369,7 +406,7 @@ window.onload = function() {
             } else {
                 imageUrl = fallbackImage;
             }
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div><div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div><div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div><div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div><div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div><div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div><div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Vendas Inteiras</p><span class="value">${valorVendasInteiras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Venda Parcial</p><span class="value">${valorVendaParcial.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Total em Vendas</p><span class="value">${valorTotalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
@@ -516,7 +553,7 @@ window.onload = function() {
                             fotoVendedorBase64 = fallbackImageBase64;
                         }
 
-                        const vendedorHeaderHtml = `<div class="pdf-header"><img class="logo" src="${logoBase64}" /><div class="pdf-title-block"><h1>RELATÓRIO INDIVIDUAL</h1><h2>${vendedorNome}</h2></div><img class="vendedor-foto" src="${fotoVendedorBase64}" /></div>`;
+                        const vendedorHeaderHtml = `<div class="pdf-header"><img class="vendedor-foto" src="${fotoVendedorBase64}" /><div class="pdf-title-block"><h1>RELATÓRIO INDIVIDUAL</h1><h2>${vendedorNome}</h2></div><img class="logo" src="${logoBase64}" /></div>`;
                         captureArea.innerHTML = vendedorHeaderHtml;
                         const redundantHeader = clonedSection.querySelector('.vendedor-header');
                         if (redundantHeader) redundantHeader.remove();
