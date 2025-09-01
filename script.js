@@ -1,6 +1,6 @@
 window.onload = function() {
     // Logo da empresa em formato Base64 para ser embutida no PDF
-    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
+    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
 
     // Seletores dos elementos da página
     const fileInput = document.getElementById('excelFile');
@@ -333,61 +333,26 @@ window.onload = function() {
                 .reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
             const valorTotalVendas = valorVendasInteiras + valorVendaParcial;
 
-            // Weekly breakdown logic
-            const weeklyData = {};
-            leadsByPerson.forEach(leadRow => {
-                const dateObj = parseDate(leadRow['Semana']);
-                if (!dateObj) return;
-                const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
-                const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
-
-                if (!weeklyData[weekLabel]) {
-                    weeklyData[weekLabel] = { leads: 0, entreMarc: 0, entreRea: 0, vendasInteiras: 0, vendaParcial: 0, dateObj: dateObj };
-                }
-                weeklyData[weekLabel].leads += leadRow.Leads || 0;
-                weeklyData[weekLabel].entreMarc += leadRow.EntreMarc || 0;
-                weeklyData[weekLabel].entreRea += leadRow.EntreRea || 0;
-            });
-            salesByPerson.forEach(sale => {
-                const dateObj = parseDate(sale[dateColumnName]);
-                if (!dateObj) return;
-                const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
-                const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
-
-                if (!weeklyData[weekLabel]) {
-                    weeklyData[weekLabel] = { leads: 0, entreMarc: 0, entreRea: 0, vendasInteiras: 0, vendaParcial: 0, dateObj: dateObj };
-                }
-                const tipo = sale['Tipo de Venda'] || '';
-                if (tipo === 'Venda Inteira') {
-                    weeklyData[weekLabel].vendasInteiras++;
-                }
-                if (tipo.includes('Boleto') || tipo.includes('Outro')) {
-                    weeklyData[weekLabel].vendaParcial++;
-                }
-            });
-
-            let weeklyDetailHtml = '<div class="vendedor-detalhe-semanal"><h4>Detalhamento Semanal:</h4>';
-            if (Object.keys(weeklyData).length === 0) {
-                weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado semanal.</p>';
-            } else {
-                weeklyDetailHtml += '<ul class="vendedor-semanal-list">';
-                Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
-                    const data = weeklyData[week];
-                    const vendaTotal = data.vendasInteiras + data.vendaParcial;
-                    const stars = calculateStars(vendaTotal);
-                    weeklyDetailHtml += `<li>
-                                           <div class="weekly-item-header"><strong>Semana de ${week}</strong><span class="stars">${stars}</span></div>
-                                           <div class="weekly-sub-details">
-                                             <span>Leads: <strong>${data.leads}</strong></span>
-                                             <span>Entrevistas Marcadas: <strong>${data.entreMarc}</strong></span>
-                                             <span>Entrevistas Realizadas: <strong>${data.entreRea}</strong></span>
-                                             <span>Vendas Totais: <strong>${vendaTotal}</strong></span>
-                                           </div>
-                                         </li>`;
-                });
-                weeklyDetailHtml += '</ul>';
+            let extraInfoHtml = '';
+            if (collab.Nome === 'Andre') {
+                extraInfoHtml = `
+                    <div class="summary-grid-totals">
+                        <div class="summary-item"><p>Vendas (Junho)</p><span class="value">36</span></div>
+                        <div class="summary-item"><p>Valor (Junho)</p><span class="value">${(34086).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                    </div>
+                     <div class="summary-grid-totals">
+                        <div class="summary-item"><p>Vendas Individuais (Julho)</p><span class="value">Qtd</span></div>
+                        <div class="summary-item"><p>Valor Individual (Julho)</p><span class="value">R$</span></div>
+                        <div class="summary-item"><p>Vendas Equipe (Julho)</p><span class="value">Qtd</span></div>
+                         <div class="summary-item"><p>Valor Equipe (Julho)</p><span class="value">R$</span></div>
+                    </div>
+                     <div class="summary-grid-totals">
+                        <div class="summary-item"><p>Vendas Individuais (Agosto)</p><span class="value">Qtd</span></div>
+                        <div class="summary-item"><p>Valor Individual (Agosto)</p><span class="value">R$</span></div>
+                        <div class="summary-item"><p>Vendas Equipe (Agosto)</p><span class="value">Qtd</span></div>
+                        <div class="summary-item"><p>Valor Equipe (Agosto)</p><span class="value">R$</span></div>
+                    </div>`;
             }
-            weeklyDetailHtml += '</div>';
 
             const nomeArquivo = collab.Nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const fallbackImage = `./images/foto-${nomeArquivo}.png`;
@@ -406,7 +371,7 @@ window.onload = function() {
             } else {
                 imageUrl = fallbackImage;
             }
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div><div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div><div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div><div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Vendas Inteiras</p><span class="value">${valorVendasInteiras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Venda Parcial</p><span class="value">${valorVendaParcial.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Total em Vendas</p><span class="value">${valorTotalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div><div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div><div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div><div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Vendas Inteiras</p><span class="value">${valorVendasInteiras.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Venda Parcial</p><span class="value">${valorVendaParcial.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div><div class="summary-item"><p>Valor Total em Vendas</p><span class="value">${valorTotalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div></div>${extraInfoHtml}</div></div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
