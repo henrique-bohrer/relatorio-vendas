@@ -120,7 +120,7 @@ h2 {
 }
 .summary-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Mais flexível */
+    grid-template-columns: repeat(4, 1fr); /* Força 4 colunas de larguras iguais */
     gap: 20px;
 }
 .weekly-details {
@@ -165,10 +165,11 @@ h2 {
     margin-bottom: 20px;
     grid-column: 1 / -1;
 }
-.vendedor-header img {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
+.vendedor-header img,
+.pdf-header img.vendedor-foto {
+    width: auto;
+    height: 6rem;
+    border-radius: .5rem;
     object-fit: cover;
     border: 3px solid var(--cor-destaque);
 }
@@ -279,12 +280,6 @@ h4 {
     text-align: center;
     flex-grow: 1;
 }
-.pdf-header img.vendedor-foto {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 3px solid var(--cor-destaque);
-}
 /* Grid para o conteúdo do PDF */
 .pdf-content-grid {
     display: grid;
@@ -337,4 +332,23 @@ h4 {
         flex-direction: column;
         grid-template-columns: 1fr;
     }
+}
+
+.weekly-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+}
+.weekly-item li {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 14px;
+}
+.weekly-item li:last-child {
+    border-bottom: none;
+}
+.weekly-item li .value {
+    font-size: 16px;
 }

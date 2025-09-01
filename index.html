@@ -1,88 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Relatório de Vendas</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de Relatório de Vendas</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  </head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
 
-  <body>
+<body>
 
-    <header>
-      <h1>Dashboard de Vendas</h1>
-      <p>Importe sua planilha para gerar uma análise de performance.</p>
-    </header>
+  <header>
+    <h1>Dashboard de Vendas</h1>
+    <p>Importe sua planilha para gerar uma análise de performance.</p>
+  </header>
 
-    <main>
-      <div class="controls">
-        <input type="file" id="excelFile" accept=".xlsx, .xls">
-        <label for="excelFile" class="custom-file-upload">Carregar Planilha de
-          Vendas</label>
+  <main>
+    <div class="controls">
+      <input type="file" id="excelFile" accept=".xlsx, .xls">
+      <label for="excelFile" class="custom-file-upload">Carregar Planilha</label>
 
-        <input type="file" id="leadsFile" accept=".xlsx, .xls">
-        <label for="leadsFile" class="custom-file-upload">Carregar Planilha de
-          Leads (Opcional)</label>
+      <select id="vendedorFilter" class="hidden">
+        <option value="todos">Filtrar por Vendedor</option>
+      </select>
+      <select id="monthFilter" class="hidden">
+        <option value="todos">Filtrar por Mês</option>
+      </select>
+      <button id="downloadPdf" class="hidden">Baixar Relatório em PDF</button>
+    </div>
 
-        <select id="vendedorFilter" class="hidden">
-          <option value="todos">Filtrar por Vendedor</option>
-        </select>
-        <select id="monthFilter" class="hidden">
-          <option value="todos">Filtrar por Mês</option>
-        </select>
-        <button id="downloadPdf" class="hidden">Baixar Relatório em PDF</button>
-      </div>
-
-      <div id="sheetSelectorContainer" class="sheet-selector-container hidden">
-        <h2>Selecione as Abas Corretas</h2>
-        <p>Para gerar o relatório, por favor, indique qual aba contém os dados
-          de vendas e qual contém os dados dos
-          colaboradores.</p>
-        <div class="selectors">
-          <div class="selector-item">
-            <label for="salesSheetSelect">Aba de Vendas:</label>
-            <select id="salesSheetSelect"></select>
-          </div>
-          <div class="selector-item">
-            <label for="collaboratorsSheetSelect">Aba de Colaboradores:</label>
-            <select id="collaboratorsSheetSelect"></select>
-          </div>
-          <div class="selector-item" id="leadsSheetSelectorItem" class="hidden">
-            <label for="leadsSheetSelect">Aba de Leads:</label>
-            <select id="leadsSheetSelect"></select>
-          </div>
+    <div id="sheetSelectorContainer" class="sheet-selector-container hidden">
+      <h2>Selecione as Abas de Dados</h2>
+      <p>Para gerar o relatório, por favor, indique as abas que contêm os dados de vendas, colaboradores e leads.</p>
+      <div class="selectors">
+        <div class="selector-item">
+          <label for="salesSheetSelect">Aba de Vendas:</label>
+          <select id="salesSheetSelect"></select>
         </div>
-        <button id="generateReportButton">Gerar Relatório</button>
-      </div>
-
-      <div id="reportContainer" class="report-container">
-        <div id="leftColumn" class="report-column">
-          <div class="placeholder">
-            <h2>Aguardando a planilha...</h2>
-            <p>Por favor, carregue um arquivo Excel para começar.</p>
-          </div>
+        <div class="selector-item">
+          <label for="collaboratorsSheetSelect">Aba de Colaboradores:</label>
+          <select id="collaboratorsSheetSelect"></select>
         </div>
-
-        <div id="rightColumn" class="report-column">
+        <div class="selector-item">
+          <label for="leadsSheetSelect">Aba de Leads:</label>
+          <select id="leadsSheetSelect"></select>
         </div>
       </div>
-    </main>
+      <button id="generateReportButton">Gerar Relatório</button>
+    </div>
 
-    <script src="script.js"></script>
-  </body>
+    <div id="reportContainer" class="report-container">
+      <div id="leftColumn" class="report-column">
+        <div class="placeholder">
+          <h2>Aguardando a planilha...</h2>
+          <p>Por favor, carregue um arquivo Excel para começar.</p>
+        </div>
+      </div>
+
+      <div id="rightColumn" class="report-column">
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 
 </html>

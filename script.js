@@ -1,10 +1,9 @@
 window.onload = function() {
     // Logo da empresa em formato Base64 para ser embutida no PDF
-    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
+    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
 
     // Seletores dos elementos da página
     const fileInput = document.getElementById('excelFile');
-    const leadsFileInput = document.getElementById('leadsFile');
     const leftColumn = document.getElementById('leftColumn');
     const rightColumn = document.getElementById('rightColumn');
     let vendedorFilter = document.getElementById('vendedorFilter');
@@ -14,12 +13,10 @@ window.onload = function() {
     const salesSheetSelect = document.getElementById('salesSheetSelect');
     const collaboratorsSheetSelect = document.getElementById('collaboratorsSheetSelect');
     const leadsSheetSelect = document.getElementById('leadsSheetSelect');
-    const leadsSheetSelectorItem = document.getElementById('leadsSheetSelectorItem');
     const generateReportButton = document.getElementById('generateReportButton');
 
     // Variáveis para armazenar os dados e o estado
     let workbook;
-    let leadsWorkbook;
     let fullSalesData = [];
     let fullCollaboratorsData = [];
     let fullLeadsData = [];
@@ -27,60 +24,39 @@ window.onload = function() {
 
     // Event Listeners Iniciais
     fileInput.addEventListener('change', handleFile);
-    leadsFileInput.addEventListener('change', handleLeadsFile);
     generateReportButton.addEventListener('click', generateReportFromSelection);
 
     function handleFile(event) {
         const file = event.target.files[0];
         if (!file) return;
-        // Não reseta a UI aqui para permitir carregar o de leads depois
+        resetUI();
         const reader = new FileReader();
         reader.onload = function(e) {
             const data = new Uint8Array(e.target.result);
             workbook = XLSX.read(data, { type: 'array', cellDates: true });
-            populateSheetSelectors(workbook.SheetNames, salesSheetSelect);
-            populateSheetSelectors(workbook.SheetNames, collaboratorsSheetSelect);
+            populateSheetSelectors(workbook.SheetNames);
             sheetSelectorContainer.classList.remove('hidden');
         };
         reader.readAsArrayBuffer(file);
     }
 
-    function handleLeadsFile(event) {
-        const file = event.target.files[0];
-        if (!file) {
-            leadsWorkbook = null;
-            leadsSheetSelectorItem.classList.add('hidden');
-            return;
-        };
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = new Uint8Array(e.target.result);
-            leadsWorkbook = XLSX.read(data, { type: 'array' });
-            populateSheetSelectors(leadsWorkbook.SheetNames, leadsSheetSelect);
-            leadsSheetSelectorItem.classList.remove('hidden');
-            sheetSelectorContainer.classList.remove('hidden');
-        };
-        reader.readAsArrayBuffer(file);
-    }
-
-    function populateSheetSelectors(sheetNames, selectElement) {
-        selectElement.innerHTML = '';
+    function populateSheetSelectors(sheetNames) {
+        salesSheetSelect.innerHTML = '';
+        collaboratorsSheetSelect.innerHTML = '';
+        leadsSheetSelect.innerHTML = '';
         sheetNames.forEach(name => {
-            selectElement.add(new Option(name, name));
+            salesSheetSelect.add(new Option(name, name));
+            collaboratorsSheetSelect.add(new Option(name, name));
+            leadsSheetSelect.add(new Option(name, name));
         });
     }
 
     function generateReportFromSelection() {
-        if (!workbook) { alert("Por favor, carregue um arquivo de Vendas primeiro."); return; }
+        if (!workbook) { alert("Por favor, carregue um arquivo Excel primeiro."); return; }
 
         const salesData = XLSX.utils.sheet_to_json(workbook.Sheets[salesSheetSelect.value]);
         const collaboratorsData = XLSX.utils.sheet_to_json(workbook.Sheets[collaboratorsSheetSelect.value]);
-
-        if (leadsWorkbook) {
-            fullLeadsData = XLSX.utils.sheet_to_json(leadsWorkbook.Sheets[leadsSheetSelect.value]);
-        } else {
-            fullLeadsData = [];
-        }
+        const leadsData = XLSX.utils.sheet_to_json(workbook.Sheets[leadsSheetSelect.value]);
 
         const uniqueSalesData = [];
         const seenVendaIDs = new Set();
@@ -93,6 +69,7 @@ window.onload = function() {
 
         fullSalesData = uniqueSalesData;
         fullCollaboratorsData = collaboratorsData;
+        fullLeadsData = leadsData;
 
         dateColumn = findDateColumn(fullSalesData);
         if (!dateColumn) {
@@ -100,6 +77,7 @@ window.onload = function() {
             return;
         }
 
+        // Recria os filtros para limpar event listeners antigos ao carregar novo arquivo
         const newVendedorFilter = vendedorFilter.cloneNode(true);
         vendedorFilter.parentNode.replaceChild(newVendedorFilter, vendedorFilter);
         vendedorFilter = document.getElementById('vendedorFilter');
@@ -132,17 +110,22 @@ window.onload = function() {
                 const month = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
                 return month === selectedMonth;
             });
-            // Opcional: filtrar leads pelo mês, se a planilha de leads tiver data.
-            // Por enquanto, vamos mostrar todos os leads do arquivo carregado.
+            leadsToRender = leadsToRender.filter(leadRow => {
+                const dateObj = parseDate(leadRow['Semana']); // Assuming 'Semana' is a date
+                if (!dateObj) return false;
+                const month = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
+                return month === selectedMonth;
+            });
         }
 
         const generalHtml = buildGeneralSummaryHtml(salesToRender, leadsToRender);
-        const weeklyHtml = buildWeeklySummaryHtml(salesToRender, dateColumn);
-        const salespeopleHtml = buildAllSalespeopleReportsHtml(salesToRender, fullCollaboratorsData, dateColumn, leadsToRender);
+        const weeklyHtml = buildWeeklySummaryHtml(salesToRender, leadsToRender, dateColumn);
+        const salespeopleHtml = buildAllSalespeopleReportsHtml(salesToRender, fullCollaboratorsData, leadsToRender, dateColumn);
 
         leftColumn.innerHTML = generalHtml;
         rightColumn.innerHTML = weeklyHtml + salespeopleHtml;
 
+        // Aplica a visibilidade do filtro de vendedor
         const selectedVendedorId = vendedorFilter.value;
         document.querySelectorAll('.vendedor-section').forEach(section => {
             section.style.display = (selectedVendedorId === 'todos' || section.dataset.vendedorId === String(selectedVendedorId)) ? 'grid' : 'none';
@@ -153,7 +136,6 @@ window.onload = function() {
         leftColumn.innerHTML = `<div class="placeholder"><h2>Aguardando a planilha...</h2><p>Por favor, carregue um arquivo Excel para começar.</p></div>`;
         rightColumn.innerHTML = '';
         sheetSelectorContainer.classList.add('hidden');
-        leadsSheetSelectorItem.classList.add('hidden');
         vendedorFilter.classList.add('hidden');
         monthFilter.classList.add('hidden');
         downloadPdfButton.classList.add('hidden');
@@ -184,10 +166,10 @@ window.onload = function() {
         return null;
     }
 
-    function calculateStars(validSalesCount) {
-        if (validSalesCount >= 10) return "⭐⭐⭐";
-        if (validSalesCount >= 8) return "⭐⭐";
-        if (validSalesCount >= 5) return "⭐";
+    function calculateStars(salesCount) {
+        if (salesCount >= 10) return "⭐⭐⭐";
+        if (salesCount >= 8) return "⭐⭐";
+        if (salesCount >= 5) return "⭐";
         return "";
     }
 
@@ -200,42 +182,73 @@ window.onload = function() {
     }
 
     function buildGeneralSummaryHtml(sales, leadsData) {
-        const vendasValidas = sales.filter(isVendaValida);
-        const totalVendasValidas = vendasValidas.length;
-        const valorTotalRecebido = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
+        const totalLeads = leadsData.reduce((sum, row) => sum + (row.Leads || 0), 0);
+        const totalEntreMarc = leadsData.reduce((sum, row) => sum + (row.EntreMarc || 0), 0);
+        const totalEntreRea = leadsData.reduce((sum, row) => sum + (row.EntreRea || 0), 0);
+
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
-        const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
-        const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-        const leads = leadsData.reduce((sum, l) => sum + (l.Leads || 0), 0);
-        const valorTotalRealizado = vendasValidas.reduce((sum, s) => sum + (s.Valor || 0), 0);
+        const vendaParcial = sales.filter(s => {
+            const tipo = s['Tipo de Venda'] || '';
+            return tipo.includes('Boleto') || tipo.includes('Outro');
+        }).length;
+        const vendaTotal = vendasInteiras + vendaParcial;
 
         return `<div class="report-section" id="general-summary">
                     <h2>1. RELATÓRIO GERAL DO DEPARTAMENTO</h2>
                     <div class="summary-grid">
-                        <div class="summary-item"><p>Leads Gerados</p><span class="value">${leads}</span></div>
-                        <div class="summary-item"><p>Vendas Válidas</p><span class="value">${totalVendasValidas}</span></div>
+                        <div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div>
+                        <div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div>
+                        <div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div>
                         <div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div>
-                        <div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div>
-                        <div class="summary-item"><p>Retornos Emitidos</p><span class="value">${retornos}</span></div>
-                    </div>
-                    <div class="summary-grid-totals">
-                        <div class="summary-item"><p>Valor Total Recebido (com retornos)</p><span class="value">${valorTotalRecebido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
-                        <div class="summary-item"><p>Valor Total Realizado (vendas válidas)</p><span class="value">${valorTotalRealizado.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                        <div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div>
+                        <div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div>
                     </div>
                 </div>`;
     }
 
-    function buildWeeklySummaryHtml(sales, dateColumnName) {
+    function buildWeeklySummaryHtml(sales, leadsData, dateColumnName) {
         const weeklyData = {};
+
+        // Process leads data (already aggregated weekly)
+        leadsData.forEach(leadRow => {
+            const dateObj = parseDate(leadRow['Semana']);
+            if (!dateObj) return;
+            const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
+            const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+
+            if (!weeklyData[weekLabel]) {
+                weeklyData[weekLabel] = {
+                    leads: 0, entreMarc: 0, entreRea: 0,
+                    vendasInteiras: 0, vendaParcial: 0,
+                    dateObj: dateObj
+                };
+            }
+            weeklyData[weekLabel].leads += leadRow.Leads || 0;
+            weeklyData[weekLabel].entreMarc += leadRow.EntreMarc || 0;
+            weeklyData[weekLabel].entreRea += leadRow.EntreRea || 0;
+        });
+
+        // Process sales data
         sales.forEach(sale => {
             const dateObj = parseDate(sale[dateColumnName]);
             if (!dateObj) return;
             const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
             const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+
             if (!weeklyData[weekLabel]) {
-                weeklyData[weekLabel] = { sales: [], dateObj: dateObj };
+                weeklyData[weekLabel] = {
+                    leads: 0, entreMarc: 0, entreRea: 0,
+                    vendasInteiras: 0, vendaParcial: 0,
+                    dateObj: dateObj
+                };
             }
-            weeklyData[weekLabel].sales.push(sale);
+            const tipo = sale['Tipo de Venda'] || '';
+            if (tipo === 'Venda Inteira') {
+                weeklyData[weekLabel].vendasInteiras++;
+            }
+            if (tipo.includes('Boleto') || tipo.includes('Outro')) {
+                weeklyData[weekLabel].vendaParcial++;
+            }
         });
 
         let weeklyHtml = '<div class="report-section" id="weekly-summary"><h2>2. DETALHAMENTO SEMANAL</h2>';
@@ -244,11 +257,19 @@ window.onload = function() {
         } else {
             weeklyHtml += '<div class="weekly-details">';
             Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
-                const weekSales = weeklyData[week].sales;
-                const totalVendas = weekSales.filter(s => s['Tipo de Venda'] !== 'Retorno').length;
-                const retornos = weekSales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-                const valorTotal = weekSales.reduce((sum, s) => sum + (s.Valor || 0), 0);
-                weeklyHtml += `<div class="weekly-item"><p><strong>Semana ${week}</strong></p><p>Total de Vendas: <strong class="value">${totalVendas}</strong></p><p>Retornos: <strong class="value">${retornos}</strong></p><p>Valor Total: <strong class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></p></div>`;
+                const data = weeklyData[week];
+                const vendaTotal = data.vendasInteiras + data.vendaParcial;
+                weeklyHtml += `<div class="weekly-item">
+                                <p><strong>Semana ${week}</strong></p>
+                                <ul>
+                                   <li>Leads: <strong class="value">${data.leads}</strong></li>
+                                   <li>Entrevistas Marcadas: <strong class="value">${data.entreMarc}</strong></li>
+                                   <li>Entrevistas Realizadas: <strong class="value">${data.entreRea}</strong></li>
+                                   <li>Vendas Inteiras: <strong class="value">${data.vendasInteiras}</strong></li>
+                                   <li>Venda Parcial: <strong class="value">${data.vendaParcial}</strong></li>
+                                   <li>Venda Total: <strong class="value">${vendaTotal}</strong></li>
+                                </ul>
+                               </div>`;
             });
             weeklyHtml += '</div>';
         }
@@ -256,54 +277,76 @@ window.onload = function() {
         return weeklyHtml;
     }
 
-    function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName, leadsData) {
+    function buildAllSalespeopleReportsHtml(sales, collaborators, leadsData, dateColumnName) {
         let allReportsHtml = '<div id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
         let hasSalespeopleReports = false;
         collaborators.forEach(collab => {
             const salesByPerson = sales.filter(s => s.ColaboradorID === collab.ColaboradorID);
-            const leadsByPerson = leadsData.filter(l => l.Nome === collab.Nome).reduce((sum, l) => sum + (l.Leads || 0), 0);
+            const leadsByPerson = leadsData.filter(l => l.ColaboradorID === collab.ColaboradorID);
 
-            if (salesByPerson.length === 0 && leadsByPerson === 0) return;
+            if (salesByPerson.length === 0 && leadsByPerson.length === 0) return;
             hasSalespeopleReports = true;
 
+            const totalLeads = leadsByPerson.reduce((sum, row) => sum + (row.Leads || 0), 0);
+            const totalEntreMarc = leadsByPerson.reduce((sum, row) => sum + (row.EntreMarc || 0), 0);
+            const totalEntreRea = leadsByPerson.reduce((sum, row) => sum + (row.EntreRea || 0), 0);
             const vendasInteiras = salesByPerson.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
-            const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
-            const totalVendas = vendasInteiras + entradasDeVenda;
-            const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-            const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
-            const valorRealizado = salesByPerson.filter(isVendaValida).reduce((sum, s) => sum + (s.Valor || 0), 0);
+            const vendaParcial = salesByPerson.filter(s => {
+                const tipo = s['Tipo de Venda'] || '';
+                return tipo.includes('Boleto') || tipo.includes('Outro');
+            }).length;
+            const vendaTotal = vendasInteiras + vendaParcial;
 
             const weeklyData = {};
+            leadsByPerson.forEach(leadRow => {
+                const dateObj = parseDate(leadRow['Semana']);
+                if (!dateObj) return;
+                const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
+                const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+
+                if (!weeklyData[weekLabel]) {
+                    weeklyData[weekLabel] = { leads: 0, entreMarc: 0, entreRea: 0, vendasInteiras: 0, vendaParcial: 0, dateObj: dateObj };
+                }
+                weeklyData[weekLabel].leads += leadRow.Leads || 0;
+                weeklyData[weekLabel].entreMarc += leadRow.EntreMarc || 0;
+                weeklyData[weekLabel].entreRea += leadRow.EntreRea || 0;
+            });
             salesByPerson.forEach(sale => {
                 const dateObj = parseDate(sale[dateColumnName]);
                 if (!dateObj) return;
                 const endDate = new Date(dateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
                 const weekLabel = `${dateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${endDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
+
                 if (!weeklyData[weekLabel]) {
-                    weeklyData[weekLabel] = { count: 0, validas: 0, inteiras: 0, entradas: 0, dateObj: dateObj };
+                    weeklyData[weekLabel] = { leads: 0, entreMarc: 0, entreRea: 0, vendasInteiras: 0, vendaParcial: 0, dateObj: dateObj };
                 }
-                weeklyData[weekLabel].count++;
-                if (sale['Tipo de Venda'] === 'Venda Inteira') weeklyData[weekLabel].inteiras++;
-                else if (sale['Tipo de Venda'] === 'Entrada de Venda') weeklyData[weekLabel].entradas++;
-                if (isVendaValida(sale)) weeklyData[weekLabel].validas++;
+                const tipo = sale['Tipo de Venda'] || '';
+                if (tipo === 'Venda Inteira') {
+                    weeklyData[weekLabel].vendasInteiras++;
+                }
+                if (tipo.includes('Boleto') || tipo.includes('Outro')) {
+                    weeklyData[weekLabel].vendaParcial++;
+                }
             });
 
             let weeklyDetailHtml = '<div class="vendedor-detalhe-semanal"><h4>Detalhamento Semanal:</h4>';
             if (Object.keys(weeklyData).length === 0) {
-                weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado.</p>';
+                weeklyDetailHtml += '<p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum dado semanal.</p>';
             } else {
                 weeklyDetailHtml += '<ul class="vendedor-semanal-list">';
                 Object.keys(weeklyData).sort((a, b) => weeklyData[a].dateObj - weeklyData[b].dateObj).forEach(week => {
                     const data = weeklyData[week];
-                    const stars = calculateStars(data.validas);
-                    const weeklyValue = salesByPerson.filter(s => {
-                        const saleDateObj = parseDate(s[dateColumnName]);
-                        if (!saleDateObj) return false;
-                        const saleEndDate = new Date(saleDateObj.getTime() + 6 * 24 * 60 * 60 * 1000);
-                        const saleWeekLabel = `${saleDateObj.toLocaleDateString('pt-BR', { timeZone: 'UTC' })} - ${saleEndDate.toLocaleDateString('pt-BR', { timeZone: 'UTC' })}`;
-                        return saleWeekLabel === week;
-                    }).reduce((sum, s) => sum + (s.Valor || 0), 0);
-                    weeklyDetailHtml += `<li><div class="weekly-item-header"><strong>Semana de ${week}</strong><span class="stars">${stars}</span></div><div class="weekly-sub-details"><span>Vendas Válidas: <strong>${data.validas}</strong></span><span>Vendas Totais: <strong>${data.inteiras + data.entradas}</strong></span><span>Valor: <strong>${weeklyValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong></span></div></li>`;
+                    const vendaTotal = data.vendasInteiras + data.vendaParcial;
+                    const stars = calculateStars(vendaTotal);
+                    weeklyDetailHtml += `<li>
+                                           <div class="weekly-item-header"><strong>Semana de ${week}</strong><span class="stars">${stars}</span></div>
+                                           <div class="weekly-sub-details">
+                                             <span>Leads: <strong>${data.leads}</strong></span>
+                                             <span>Entrevistas Marcadas: <strong>${data.entreMarc}</strong></span>
+                                             <span>Entrevistas Realizadas: <strong>${data.entreRea}</strong></span>
+                                             <span>Vendas Totais: <strong>${vendaTotal}</strong></span>
+                                           </div>
+                                         </li>`;
                 });
                 weeklyDetailHtml += '</ul>';
             }
@@ -326,7 +369,7 @@ window.onload = function() {
             } else {
                 imageUrl = fallbackImage;
             }
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads Gerados</p><span class="value">${leadsByPerson}</span></div><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads</p><span class="value">${totalLeads}</span></div><div class="summary-item"><p>Entrevistas Marcadas</p><span class="value">${totalEntreMarc}</span></div><div class="summary-item"><p>Entrevistas Realizadas</p><span class="value">${totalEntreRea}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Venda Parcial</p><span class="value">${vendaParcial}</span></div><div class="summary-item"><p>Venda Total</p><span class="value">${vendaTotal}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
@@ -452,7 +495,6 @@ window.onload = function() {
                         let imageUrl;
                         if (collaborator && collaborator.Foto) {
                             let url = collaborator.Foto;
-                            // Check if it's a GitHub blob URL and transform it
                             if (url.includes('github.com') && url.includes('/blob/')) {
                                 url = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/').replace('?raw=true', '');
                             }
@@ -460,7 +502,6 @@ window.onload = function() {
                             if (url.startsWith('http://') || url.startsWith('https://')) {
                                 imageUrl = url;
                             } else {
-                                // It's a relative path
                                 imageUrl = `./images/${collaborator.Foto}`;
                             }
                         } else {
