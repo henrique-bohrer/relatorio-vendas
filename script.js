@@ -33,7 +33,10 @@ window.onload = function() {
         const reader = new FileReader();
         reader.onload = function(e) {
             const data = new Uint8Array(e.target.result);
-            workbook = XLSX.read(data, { type: 'array', cellDates: true });
+            workbook = XLSX.read(data, {
+                type: 'array',
+                cellDates: true
+            });
             populateSheetSelectors(workbook.SheetNames);
             sheetSelectorContainer.classList.remove('hidden');
         };
@@ -52,7 +55,10 @@ window.onload = function() {
     }
 
     function generateReportFromSelection() {
-        if (!workbook) { alert("Por favor, carregue um arquivo Excel primeiro."); return; }
+        if (!workbook) {
+            alert("Por favor, carregue um arquivo Excel primeiro.");
+            return;
+        }
 
         const salesData = XLSX.utils.sheet_to_json(workbook.Sheets[salesSheetSelect.value]);
         const collaboratorsData = XLSX.utils.sheet_to_json(workbook.Sheets[collaboratorsSheetSelect.value]);
@@ -157,7 +163,9 @@ window.onload = function() {
         if (typeof excelVal === 'string') {
             const parts = excelVal.split('/');
             if (parts.length === 3) {
-                const day = parseInt(parts[0], 10), month = parseInt(parts[1], 10) - 1, year = parseInt(parts[2], 10);
+                const day = parseInt(parts[0], 10),
+                    month = parseInt(parts[1], 10) - 1,
+                    year = parseInt(parts[2], 10);
                 if (!isNaN(day) && !isNaN(month) && !isNaN(year)) return new Date(Date.UTC(year, month, day));
             }
             const d = new Date(excelVal);
@@ -182,9 +190,13 @@ window.onload = function() {
 
     function isVendaValida(sale) {
         if (!sale) return false;
-        if (sale.Valor && sale.Valor >= 850) { return true; }
+        if (sale.Valor && sale.Valor >= 850) {
+            return true;
+        }
         const produto = sale.Produto || '';
-        if (produto.toLowerCase().includes('entrada')) { return true; }
+        if (produto.toLowerCase().includes('entrada')) {
+            return true;
+        }
         return false;
     }
 
@@ -241,8 +253,11 @@ window.onload = function() {
 
             if (!weeklyData[weekLabel]) {
                 weeklyData[weekLabel] = {
-                    leads: 0, entreMarc: 0, entreRea: 0,
-                    vendasInteiras: 0, vendaParcial: 0,
+                    leads: 0,
+                    entreMarc: 0,
+                    entreRea: 0,
+                    vendasInteiras: 0,
+                    vendaParcial: 0,
                     dateObj: dateObj
                 };
             }
@@ -260,8 +275,11 @@ window.onload = function() {
 
             if (!weeklyData[weekLabel]) {
                 weeklyData[weekLabel] = {
-                    leads: 0, entreMarc: 0, entreRea: 0,
-                    vendasInteiras: 0, vendaParcial: 0,
+                    leads: 0,
+                    entreMarc: 0,
+                    entreRea: 0,
+                    vendasInteiras: 0,
+                    vendaParcial: 0,
                     dateObj: dateObj
                 };
             }
@@ -335,24 +353,43 @@ window.onload = function() {
 
             let extraInfoHtml = '';
             if (collab.Nome === 'Andre') {
-                extraInfoHtml = `
-                    <div class="summary-grid-totals">
-                        <div class="summary-item"><p>Vendas (Junho)</p><span class="value">36</span></div>
-                        <div class="summary-item"><p>Valor (Junho)</p><span class="value">${(34086).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
-                    </div>
-                     <div class="summary-grid-totals">
-                        <div class="summary-item"><p>Vendas Individuais (Julho)</p><span class="value">Qtd</span></div>
-                        <div class="summary-item"><p>Valor Individual (Julho)</p><span class="value">R$</span></div>
-                        <div class="summary-item"><p>Vendas Equipe (Julho)</p><span class="value">Qtd</span></div>
-                         <div class="summary-item"><p>Valor Equipe (Julho)</p><span class="value">R$</span></div>
-                    </div>
-                     <div class="summary-grid-totals">
-                        <div class="summary-item"><p>Vendas Individuais (Agosto)</p><span class="value">Qtd</span></div>
-                        <div class="summary-item"><p>Valor Individual (Agosto)</p><span class="value">R$</span></div>
-                        <div class="summary-item"><p>Vendas Equipe (Agosto)</p><span class="value">Qtd</span></div>
-                        <div class="summary-item"><p>Valor Equipe (Agosto)</p><span class="value">R$</span></div>
+                const selectedMonth = monthFilter.value;
+
+                // Static June Info
+                extraInfoHtml += `
+                    <div class="summary-grid-totals" style="margin-top:15px; border-top: 1px solid var(--cor-borda); padding-top: 15px;">
+                        <div class="summary-item"><p>Vendas Históricas (Junho)</p><span class="value">36</span></div>
+                        <div class="summary-item"><p>Valor Histórico (Junho)</p><span class="value">${(34086).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
                     </div>`;
+
+                if (selectedMonth.endsWith('-07') || selectedMonth.endsWith('-08')) {
+                    const monthLabel = selectedMonth.endsWith('-07') ? 'Julho' : 'Agosto';
+                    const andreID = collab.ColaboradorID;
+
+                    const teamCollaboratorIDs = fullCollaboratorsData
+                        .filter(c => c.ColaboradorID !== andreID)
+                        .map(c => c.ColaboradorID);
+
+                    const teamSales = fullSalesData.filter(sale => {
+                        const dateObj = parseDate(sale[dateColumn]);
+                        if (!dateObj) return false;
+                        const month = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
+                        return month === selectedMonth && teamCollaboratorIDs.includes(sale.ColaboradorID);
+                    });
+
+                    const teamSalesCount = teamSales.length;
+                    const teamSalesValue = teamSales.reduce((sum, s) => sum + parseCurrency(s.Valor), 0);
+
+                    extraInfoHtml += `
+                        <div class="summary-grid-totals" style="margin-top:15px; border-top: 1px solid var(--cor-borda); padding-top: 15px;">
+                            <div class="summary-item"><p>Vendas Individuais (${monthLabel})</p><span class="value">${vendaTotal}</span></div>
+                            <div class="summary-item"><p>Valor Individual (${monthLabel})</p><span class="value">${valorTotalVendas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                            <div class="summary-item"><p>Vendas Equipe (${monthLabel})</p><span class="value">${teamSalesCount}</span></div>
+                            <div class="summary-item"><p>Valor Equipe (${monthLabel})</p><span class="value">${teamSalesValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span></div>
+                        </div>`;
+                }
             }
+
 
             const nomeArquivo = collab.Nome.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             const fallbackImage = `./images/foto-${nomeArquivo}.png`;
@@ -385,7 +422,7 @@ window.onload = function() {
         sales.forEach(sale => {
             const collab = collaborators.find(c => c.ColaboradorID === sale.ColaboradorID);
             if (collab && !processedCollaborators.has(collab.ColaboradorID)) {
-                 hasSalespeople = true;
+                hasSalespeople = true;
                 const option = document.createElement('option');
                 option.value = collab.ColaboradorID;
                 option.textContent = collab.Nome;
@@ -416,7 +453,10 @@ window.onload = function() {
             const option = document.createElement('option');
             option.value = month;
             const [year, monthNum] = month.split('-');
-            const monthName = new Date(Date.UTC(year, monthNum - 1, 2)).toLocaleString('pt-BR', { month: 'long', timeZone: 'UTC' });
+            const monthName = new Date(Date.UTC(year, monthNum - 1, 2)).toLocaleString('pt-BR', {
+                month: 'long',
+                timeZone: 'UTC'
+            });
             option.textContent = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} de ${year}`;
             monthFilter.appendChild(option);
         });
@@ -452,11 +492,21 @@ window.onload = function() {
             newButton.textContent = 'Gerando PDF...';
             newButton.disabled = true;
 
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({ orientation: 'l', unit: 'pt', format: [1920, 1080] });
+            const {
+                jsPDF
+            } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: 'l',
+                unit: 'pt',
+                format: [1920, 1080]
+            });
             pdf.deletePage(1);
 
-            const options = { scale: 2.5, useCORS: true, backgroundColor: null };
+            const options = {
+                scale: 2.5,
+                useCORS: true,
+                backgroundColor: null
+            };
             const fallbackImageBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
             let logoBase64;
             try {
