@@ -1,9 +1,10 @@
 window.onload = function() {
     // Logo da empresa em formato Base64 para ser embutida no PDF
-    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
+    const logoBase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAD8+2i1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGcAACMzSURBVHiclZz5nyxHlh7E+/f/Y9i2bdu2bdu2bdu2bdu2bdu2bdu2bdu2bdu27V+2sW27LwPz8Vl9v9fM7M5KzIxsJgYkERjZ/dE9vS/eA8/e8573vOe9D5/o/1dY/D/S/Yj2L9L9kPFP3g75B+M/vB3yD8J+eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt20fXb/a7i3Yt2-9a+D/8v4/8P+gfgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD2B/eDvkE9C9u/j52N/o/k36X7N+kv2D8J/eDvkD8J/eDvkD4D+8HfIHwH94O+QPgP/wdkgb/P0g+4fgP7wd8gfAf3g75A+A/vB2yB8B/eDvkD4D/8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kg4D+8HfIHwH94O+QPgP7wd8gfAf3g75A+A//B2yB8A/+HtkD8A/gPYD28H/AHsB7eD/wD2g7dD3gD4D8B+eDvkD4D+8HbI3wD8B2B/eDvkD2B/eDvkD2B/eDvkE9C9u+B+d/8m/S/Z/kjYt23b9tX9/7b/AOYv1D9c/S4p5wAAAABJRU5ErkJggg==';
 
     // Seletores dos elementos da página
     const fileInput = document.getElementById('excelFile');
+    const leadsFileInput = document.getElementById('leadsFile');
     const leftColumn = document.getElementById('leftColumn');
     const rightColumn = document.getElementById('rightColumn');
     let vendedorFilter = document.getElementById('vendedorFilter');
@@ -12,46 +13,74 @@ window.onload = function() {
     const sheetSelectorContainer = document.getElementById('sheetSelectorContainer');
     const salesSheetSelect = document.getElementById('salesSheetSelect');
     const collaboratorsSheetSelect = document.getElementById('collaboratorsSheetSelect');
+    const leadsSheetSelect = document.getElementById('leadsSheetSelect');
+    const leadsSheetSelectorItem = document.getElementById('leadsSheetSelectorItem');
     const generateReportButton = document.getElementById('generateReportButton');
 
     // Variáveis para armazenar os dados e o estado
     let workbook;
+    let leadsWorkbook;
     let fullSalesData = [];
     let fullCollaboratorsData = [];
+    let fullLeadsData = [];
     let dateColumn = '';
 
     // Event Listeners Iniciais
     fileInput.addEventListener('change', handleFile);
+    leadsFileInput.addEventListener('change', handleLeadsFile);
     generateReportButton.addEventListener('click', generateReportFromSelection);
 
     function handleFile(event) {
         const file = event.target.files[0];
         if (!file) return;
-        resetUI();
+        // Não reseta a UI aqui para permitir carregar o de leads depois
         const reader = new FileReader();
         reader.onload = function(e) {
             const data = new Uint8Array(e.target.result);
             workbook = XLSX.read(data, { type: 'array', cellDates: true });
-            populateSheetSelectors(workbook.SheetNames);
+            populateSheetSelectors(workbook.SheetNames, salesSheetSelect);
+            populateSheetSelectors(workbook.SheetNames, collaboratorsSheetSelect);
             sheetSelectorContainer.classList.remove('hidden');
         };
         reader.readAsArrayBuffer(file);
     }
 
-    function populateSheetSelectors(sheetNames) {
-        salesSheetSelect.innerHTML = '';
-        collaboratorsSheetSelect.innerHTML = '';
+    function handleLeadsFile(event) {
+        const file = event.target.files[0];
+        if (!file) {
+            leadsWorkbook = null;
+            leadsSheetSelectorItem.classList.add('hidden');
+            return;
+        };
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            leadsWorkbook = XLSX.read(data, { type: 'array' });
+            populateSheetSelectors(leadsWorkbook.SheetNames, leadsSheetSelect);
+            leadsSheetSelectorItem.classList.remove('hidden');
+            sheetSelectorContainer.classList.remove('hidden');
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    function populateSheetSelectors(sheetNames, selectElement) {
+        selectElement.innerHTML = '';
         sheetNames.forEach(name => {
-            salesSheetSelect.add(new Option(name, name));
-            collaboratorsSheetSelect.add(new Option(name, name));
+            selectElement.add(new Option(name, name));
         });
     }
 
     function generateReportFromSelection() {
-        if (!workbook) { alert("Por favor, carregue um arquivo Excel primeiro."); return; }
+        if (!workbook) { alert("Por favor, carregue um arquivo de Vendas primeiro."); return; }
 
         const salesData = XLSX.utils.sheet_to_json(workbook.Sheets[salesSheetSelect.value]);
         const collaboratorsData = XLSX.utils.sheet_to_json(workbook.Sheets[collaboratorsSheetSelect.value]);
+
+        if (leadsWorkbook) {
+            fullLeadsData = XLSX.utils.sheet_to_json(leadsWorkbook.Sheets[leadsSheetSelect.value]);
+        } else {
+            fullLeadsData = [];
+        }
 
         const uniqueSalesData = [];
         const seenVendaIDs = new Set();
@@ -71,7 +100,6 @@ window.onload = function() {
             return;
         }
 
-        // Recria os filtros para limpar event listeners antigos ao carregar novo arquivo
         const newVendedorFilter = vendedorFilter.cloneNode(true);
         vendedorFilter.parentNode.replaceChild(newVendedorFilter, vendedorFilter);
         vendedorFilter = document.getElementById('vendedorFilter');
@@ -94,6 +122,7 @@ window.onload = function() {
 
     function updateReport() {
         let salesToRender = [...fullSalesData];
+        let leadsToRender = [...fullLeadsData];
         const selectedMonth = monthFilter.value;
 
         if (selectedMonth !== 'todos') {
@@ -103,16 +132,17 @@ window.onload = function() {
                 const month = dateObj.getUTCFullYear() + '-' + (dateObj.getUTCMonth() + 1).toString().padStart(2, '0');
                 return month === selectedMonth;
             });
+            // Opcional: filtrar leads pelo mês, se a planilha de leads tiver data.
+            // Por enquanto, vamos mostrar todos os leads do arquivo carregado.
         }
 
-        const generalHtml = buildGeneralSummaryHtml(salesToRender);
+        const generalHtml = buildGeneralSummaryHtml(salesToRender, leadsToRender);
         const weeklyHtml = buildWeeklySummaryHtml(salesToRender, dateColumn);
-        const salespeopleHtml = buildAllSalespeopleReportsHtml(salesToRender, fullCollaboratorsData, dateColumn);
+        const salespeopleHtml = buildAllSalespeopleReportsHtml(salesToRender, fullCollaboratorsData, dateColumn, leadsToRender);
 
         leftColumn.innerHTML = generalHtml;
         rightColumn.innerHTML = weeklyHtml + salespeopleHtml;
 
-        // Aplica a visibilidade do filtro de vendedor
         const selectedVendedorId = vendedorFilter.value;
         document.querySelectorAll('.vendedor-section').forEach(section => {
             section.style.display = (selectedVendedorId === 'todos' || section.dataset.vendedorId === String(selectedVendedorId)) ? 'grid' : 'none';
@@ -123,6 +153,7 @@ window.onload = function() {
         leftColumn.innerHTML = `<div class="placeholder"><h2>Aguardando a planilha...</h2><p>Por favor, carregue um arquivo Excel para começar.</p></div>`;
         rightColumn.innerHTML = '';
         sheetSelectorContainer.classList.add('hidden');
+        leadsSheetSelectorItem.classList.add('hidden');
         vendedorFilter.classList.add('hidden');
         monthFilter.classList.add('hidden');
         downloadPdfButton.classList.add('hidden');
@@ -168,14 +199,14 @@ window.onload = function() {
         return false;
     }
 
-    function buildGeneralSummaryHtml(sales) {
+    function buildGeneralSummaryHtml(sales, leadsData) {
         const vendasValidas = sales.filter(isVendaValida);
         const totalVendasValidas = vendasValidas.length;
         const valorTotalRecebido = sales.reduce((sum, s) => sum + (s.Valor || 0), 0);
         const vendasInteiras = sales.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
         const entradasDeVenda = sales.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
         const retornos = sales.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-        const leads = sales.filter(s => s['Tipo de Venda'] === 'Lead').length;
+        const leads = leadsData.reduce((sum, l) => sum + (l.Leads || 0), 0);
         const valorTotalRealizado = vendasValidas.reduce((sum, s) => sum + (s.Valor || 0), 0);
 
         return `<div class="report-section" id="general-summary">
@@ -225,19 +256,20 @@ window.onload = function() {
         return weeklyHtml;
     }
 
-    function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName) {
+    function buildAllSalespeopleReportsHtml(sales, collaborators, dateColumnName, leadsData) {
         let allReportsHtml = '<div id="vendedoresContainer"><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2>';
         let hasSalespeopleReports = false;
         collaborators.forEach(collab => {
             const salesByPerson = sales.filter(s => s.ColaboradorID === collab.ColaboradorID);
-            if (salesByPerson.length === 0) return;
+            const leadsByPerson = leadsData.filter(l => l.Nome === collab.Nome).reduce((sum, l) => sum + (l.Leads || 0), 0);
+
+            if (salesByPerson.length === 0 && leadsByPerson === 0) return;
             hasSalespeopleReports = true;
 
             const vendasInteiras = salesByPerson.filter(s => s['Tipo de Venda'] === 'Venda Inteira').length;
             const entradasDeVenda = salesByPerson.filter(s => s['Tipo de Venda'] === 'Entrada de Venda').length;
             const totalVendas = vendasInteiras + entradasDeVenda;
             const retornos = salesByPerson.filter(s => s['Tipo de Venda'] === 'Retorno').length;
-            const leads = salesByPerson.filter(s => s['Tipo de Venda'] === 'Lead').length;
             const valorTotal = salesByPerson.reduce((sum, s) => sum + (s.Valor || 0), 0);
             const valorRealizado = salesByPerson.filter(isVendaValida).reduce((sum, s) => sum + (s.Valor || 0), 0);
 
@@ -282,7 +314,6 @@ window.onload = function() {
             let imageUrl;
             if (collab.Foto) {
                 let url = collab.Foto;
-                // Check if it's a GitHub blob URL and transform it
                 if (url.includes('github.com') && url.includes('/blob/')) {
                     url = url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/').replace('?raw=true', '');
                 }
@@ -290,13 +321,12 @@ window.onload = function() {
                 if (url.startsWith('http://') || url.startsWith('https://')) {
                     imageUrl = url;
                 } else {
-                    // It's a relative path
                     imageUrl = `./images/${collab.Foto}`;
                 }
             } else {
                 imageUrl = fallbackImage;
             }
-            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads Gerados</p><span class="value">${leads}</span></div><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
+            allReportsHtml += `<div class="vendedor-section" data-vendedor-id="${collab.ColaboradorID}" data-vendedor-nome="${collab.Nome}"><div class="vendedor-header"><img src="${imageUrl}" alt="Foto de ${collab.Nome}" onerror="this.style.display='none'"><h3>Vendedor(a): ${collab.Nome}</h3></div><div class="vendedor-body"><div class="vendedor-resumo-mes"><h4>Resumo do Mês:</h4><div class="summary-grid"><div class="summary-item"><p>Leads Gerados</p><span class="value">${leadsByPerson}</span></div><div class="summary-item"><p>Total de Vendas</p><span class="value">${totalVendas}</span></div><div class="summary-item"><p>Vendas Inteiras</p><span class="value">${vendasInteiras}</span></div><div class="summary-item"><p>Entradas de Venda</p><span class="value">${entradasDeVenda}</span></div><div class="summary-item"><p>Retornos</p><span class="value">${retornos}</span></div></div><div class="summary-grid-totals"><div class="summary-item"><p>Valor Recebido</p><span class="value">${valorTotal.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div><div class="summary-item"><p>Valor Realizado</p><span class="value">${valorRealizado.toLocaleString('pt-BR', { style: 'currency', 'currency': 'BRL' })}</span></div></div></div>${weeklyDetailHtml}</div></div>`;
         });
         allReportsHtml += '</div>';
         return hasSalespeopleReports ? allReportsHtml : '<div><h2>3. RELATÓRIOS INDIVIDUAIS POR VENDEDOR</h2><p style="padding-left: 15px; color: var(--cor-texto-secundaria);">Nenhum vendedor com vendas encontrado.</p></div>';
