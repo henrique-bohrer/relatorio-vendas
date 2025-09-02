@@ -352,3 +352,28 @@ h4 {
 .weekly-item li .value {
     font-size: 16px;
 }
+.monthly-summary {
+    margin-bottom: 20px;
+}
+.monthly-details {
+    padding: 15px;
+    background-color: var(--cor-fundo-terciaria);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    margin-top: 15px;
+}
+.monthly-details p {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--cor-destaque);
+}
+.monthly-details span {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 1em;
+}
+.monthly-details span strong {
+    font-weight: 600;
+    color: var(--cor-texto);
+}
